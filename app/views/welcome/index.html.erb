@@ -1,0 +1,19 @@
+
+
+<h1 style="text-align: center;"> SISTEMA DE SOLICITUDES </h1>
+<h2 style="text-align: center;"> FACULTAD CIENCIAS HUMANAS </h2>
+
+
+<p class="navbar-text pull-right">
+<% if user_signed_in? %>
+  <p style="text-align: center; font-size: 20px;"><strong>Bienvenido: </strong><%= current_user.email %></p><br>
+  <%= link_to 'Editar perfil', edit_user_registration_path, :class => 'navbar-link' %> |
+ 
+  <%= link_to " Mis Solicitudes", solicituds_path, :class => 'navbar-link' %> |
+   <%= link_to "Salir", logout_path , method: :delete, :class => 'navbar-link' %> 
+<% else %>
+  <%= link_to "Registrarse", new_user_registration_path, :class => 'navbar-link'  %> |
+  <%= link_to "Iniciar Sesión", new_user_session_path, :class => 'navbar-link'  %>
+<% end %>
+</p>
+

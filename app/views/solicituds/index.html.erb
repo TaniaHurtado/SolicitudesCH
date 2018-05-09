@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<h1 style="text-align: center">Mis Solicitudes</h1>
+
+<table style="width:100%">
+  <thead>
+    <tr>
+      <th>Usuario</th>
+      <th>Descripcion</th>
+      <th>Tipo</th>
+      <th>Importancia</th>
+      <th>Estado</th>
+      <th>Materiales</th>
+      <th>Fecha</th>
+      <th>Lugar</th>
+      <th>Responsable</th>      
+      <th>Evaluación</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @solicituds.each do |solicitud| %>
+      <tr>
+        <td> <% @user = User.find(solicitud.user)   %>
+              <%= @user.email  %></td>
+        <td><%= solicitud.descripcion %></td>
+        <td><%= solicitud.tipo %></td>
+        <td><%= solicitud.importancia %></td>
+        <td><%= solicitud.estado %></td>
+        <td><%= solicitud.materiales %></td>
+        <td><%= solicitud.fecha %></td>
+        <td><%= solicitud.lugar %></td>
+        <td><%= solicitud.nombre_responsable %></td>
+                      
+        <td><%= link_to 'Evaluar', solicitud_evaluacions_path(solicitud) %></td>
+          <td><%= link_to 'Ver',solicitud %></td>
+          <td><%= link_to 'Editar',edit_solicitud_path(solicitud) %></td>
+        <td><%= link_to 'Eliminar',solicitud_path(solicitud), method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Crear Solicitud', new_solicitud_path %>
+<%= link_to "Salir", logout_path , method: :delete, :class => 'navbar-link' %>

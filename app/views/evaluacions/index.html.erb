@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Evaluacions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Calificacion</th>
+      <th>Obervacion</th>
+      <th>Solicitud</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @evaluacions.each do |evaluacion| %>
+      <tr>
+        <td><%= evaluacion.calificacion %></td>
+        <td><%= evaluacion.obervacion %></td>
+        <td><%= evaluacion.solicitud %></td>
+        <td><%= link_to 'Ver', solicitud_evaluacion_path(@solicitud,evaluacion)%></td>
+        <td><%= link_to 'Editar', edit_solicitud_evaluacion_path(@solicitud,evaluacion) %></td>
+        <td><%= link_to 'Eliminar', solicitud_evaluacion_path(@solicitud,evaluacion), method: :delete, data: { confirm: 'Estas seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Evaluacion', new_evaluacion_path %>

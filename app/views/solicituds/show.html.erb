@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @solicitud.descripcion %>
+</p>
+
+<p>
+  <strong>Tipo:</strong>
+  <%= @solicitud.tipo %>
+</p>
+
+<p>
+  <strong>Importancia:</strong>
+  <%= @solicitud.importancia %>
+</p>
+
+<p>
+  <strong>Estado:</strong>
+  <%= @solicitud.estado %>
+</p>
+
+<p>
+  <strong>Materiales:</strong>
+  <%= @solicitud.materiales %>
+</p>
+
+<p>
+  <strong>Fecha:</strong>
+  <%= @solicitud.fecha %>
+</p>
+
+<p>
+  <strong>Lugar:</strong>
+  <%= @solicitud.lugar %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <% @user = User.find(@solicitud.user_id)   %>
+  <%= @user.email  %>
+</p>
+<p>
+  <strong>Responsable:</strong>
+  <%= @solicitud.nombre_responsable %>
+</p>
+
+<%= link_to 'Editar', edit_solicitud_path(@solicitud) %> |
+<%= link_to 'Regresar', solicituds_path %>

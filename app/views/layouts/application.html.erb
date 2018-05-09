@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Solicitudes</title>
+    <%= csrf_meta_tags %>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    
+    <title>Inicio - Universidad Nacional de Colombia</title>
+    <style>
+      table, th, td {
+          border: 1px solid black;
+      }
+    </style>
+    
+  </head>
+
+  <body>
+  
+
+  	<% if notice %>
+  <p class="alert alert-success"><%= notice %></p>
+<% end %>
+<% if alert %>
+  <p class="alert alert-danger"><%= alert %></p>
+<% end %>
+    <%= yield %>
+  </body>
+</html>

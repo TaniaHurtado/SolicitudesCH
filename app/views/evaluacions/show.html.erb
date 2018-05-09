@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Calificacion:</strong>
+  <%= @evaluacion.calificacion %>
+</p>
+
+<p>
+  <strong>Obervacion:</strong>
+  <%= @evaluacion.obervacion %>
+</p>
+
+<p>
+  <strong>Solicitud:</strong>
+  <%= @evaluacion.solicitud %>
+</p>
+
+<%= link_to 'Editar', edit_solicitud_evaluacion_path(@solicitud, @evaluacion) %> |
+<%= link_to 'Regresar', solicitud_evaluacions_path %>
