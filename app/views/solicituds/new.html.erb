@@ -168,12 +168,14 @@
 						<h1 style="text-align: center;"> SISTEMA DE SOLICITUDES </h1>
 			<h2 style="text-align: center;"> FACULTAD CIENCIAS HUMANAS </h2>
   
-			<h1>Nueva Solicitud</h1>
+			<div class="register-content">
+				<h1 class="register-label">Nueva Solicitud</h1>
 
-            <%= render 'form', solicitud: @solicitud %>
+				<%= render 'form', solicitud: @solicitud %>
 
-            <%= link_to 'Regresar', solicituds_path %>
-
+				<%= link_to 'Regresar', solicituds_path %>
+			</div>
+			</div>
 		</main>
 
 		<footer class="clear">
@@ -239,4 +241,5 @@
 	</body>
 
 </html>
+
 

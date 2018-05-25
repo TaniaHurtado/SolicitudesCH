@@ -31,6 +31,9 @@
     border-radius: 10px;
 }
 
+.field select{
+    color: gray;
+}
 .actions input{
     background-color: #50992e;
     color: white;
