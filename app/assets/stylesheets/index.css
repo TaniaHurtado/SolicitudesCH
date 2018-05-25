@@ -1,0 +1,23 @@
+.image-caption {
+    color: #fff;
+    line-height: 1.1em;
+    position: absolute;
+    bottom: 85px;
+    margin-left: 35px;
+    background-color: rgba(0, 0, 0, 0.54);
+    /* width: calc(100% - 417px); */
+    width: 70% !important;
+}
+
+.detalle{
+    margin: 0!important;
+}
+.oldie *, .ie9 *, .oldie a:hover {
+    filter: none !important;
+}
+.home-image {
+    position: absolute;
+    top: 30px;
+    width: 100%;
+    overflow: hidden;
+}
