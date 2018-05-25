@@ -1,8 +1,9 @@
 
 .register-content{
     text-align: center;
+    margin:auto;
     margin-top: 40px;
-    width: 100%;
+    width: 50%;
     background: rgba(0,0,0,0.5);
     padding: 20px;
     color: white;
