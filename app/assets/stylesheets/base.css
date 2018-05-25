@@ -1,0 +1,57 @@
+
+.register-content{
+    text-align: center;
+    margin:auto;
+    margin-top: 40px;
+    width: 50%;
+    background: rgba(0,0,0,0.5);
+    padding: 20px;
+    color: white;
+}
+
+.field{
+    margin: 10px 0px;
+}
+
+.field label{
+    margin: 5px 0px ;
+}
+
+.field input{
+    padding: 7px;
+    margin-bottom: 1em;
+    width: 50%;
+    height: 100%;
+    background: #e0e0e0;
+    color: gray;
+    font-size: 1em;
+    border-color: white;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.field select{
+    color: gray;
+}
+.actions input{
+    background-color: #50992e;
+    color: white;
+    font-size: 1.125em;
+    border-color: #84bf05;
+    padding: 10px 25px;
+    float: right;
+    -webkit-appearance: button-bevel;
+}
+
+.actions a{   
+    float: left;
+    background-color: #50992e;
+    color: white;
+    font-size: 1.125em;
+    border-color: transparent;
+    padding: 10px 25px;
+    border-width: 2px;
+    border-style: outset;
+}
