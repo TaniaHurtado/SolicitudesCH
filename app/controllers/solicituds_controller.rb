@@ -1,29 +1,82 @@
 class SolicitudsController < ApplicationController
   before_action :set_solicitud, only: [:show, :edit, :update, :destroy]
 
+  #Estados de solicitud:
+  #Generada
+  #Asignada
+  #Aceptada
+  #Realizada
+  #Evaluada
+
   # GET /solicituds
   # GET /solicituds.json
   def index 
     @solicituds = Solicitud.where(user_id: current_user.id)
   end
-
-
   # GET /solicituds/1
   # GET /solicituds/1.json
   def show
   end
-
   # GET /solicituds/new
   def new
     @solicitud = Solicitud.new
   end
-
-
-  def place
-   
+  def place   
   end
   # GET /solicituds/1/edit
   def edit
+  end
+  #Enviar solicitud
+  def send_solicitud_mail
+    @solicitud=Solicitud.find(params[:id])
+    @solicitud.estado="Asignada"
+    @solicitud.save
+    #@lugar = Ubicacion.find_by(lugar: params[:solicitud][:lugar])
+    #@responsable = User.find(@lugar.user_id)
+    #SendSolicitudMailer.send_solicitud(@solicitud).responsable
+    redirect_to generated_solicitud_path
+  end
+
+
+  def responsable_solicituds
+   
+   #if current_user.rol == 0
+      @solicituds=Solicitud.where(correo_responsable: current_user.email)
+   #end
+    
+    respond_to do |format|
+      format.html # index.html.erb
+      format.xml  { render :xml => @solicituds }
+    end
+
+  end
+
+  def aceptar_solicitud
+    @solicitud=Solicitud.find(params[:id])
+    @solicitud.estado="Aceptada"
+    @solicitud.save
+    #@lugar = Ubicacion.find_by(lugar: params[:solicitud][:lugar])
+    #@responsable = User.find(@lugar.user_id)
+    #SendSolicitudMailer.send_solicitud(@solicitud).responsable
+    redirect_to responsable_solicituds_path
+  end
+
+  def realizar_solicitud
+    @solicitud=Solicitud.find(params[:id])
+    @solicitud.estado="Realizada"
+    @solicitud.save
+    #@lugar = Ubicacion.find_by(lugar: params[:solicitud][:lugar])
+    #@responsable = User.find(@lugar.user_id)
+    #SendSolicitudMailer.send_solicitud(@solicitud).responsable
+    redirect_to responsable_solicituds_path
+  end
+
+  def generated_solicitud
+    @solicituds=Solicitud.where("user_id = ? AND estado = ?", current_user.id, "Generada")
+  end
+
+  def history_solicituds
+    @solicituds=Solicitud.where("user_id = ? AND estado = ?", current_user.id, "Evaluada")
   end
 
   # POST /solicituds
@@ -65,10 +118,11 @@ class SolicitudsController < ApplicationController
 
   # DELETE /solicituds/1
   # DELETE /solicituds/1.json
-  def destroy
+  def destroySolicitud
+    @solicitud = Solicitud.find(params[:id])
     @solicitud.destroy
     respond_to do |format|
-      format.html { redirect_to solicituds_url, notice: 'Solicitud eliminada.' }
+      format.html { redirect_to solicitud_path, notice: 'Solicitud eliminada.' }
       format.json { head :no_content }
     end
   end

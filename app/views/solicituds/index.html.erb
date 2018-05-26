@@ -171,7 +171,6 @@
 			<p id="notice"><%= notice %></p>
 
       <h1 style="text-align: center">Mis Solicitudes</h1>
-
       <table style="width:100%">
         <thead>
           <tr>
@@ -206,7 +205,7 @@
               <td><%= link_to 'Evaluar', solicitud_evaluacions_path(solicitud) %></td>
                 <td><%= link_to 'Ver',solicitud %></td>
                 <td><%= link_to 'Editar',edit_solicitud_path(solicitud) %></td>
-              <td><%= link_to 'Eliminar',solicitud_path(solicitud), method: :delete %></td>
+              <td><%= link_to 'Eliminar',destroy_path(solicitud), method: :delete, data: {confirm: '¿Estas seguro?'} %></td>
             </tr>
           <% end %>
         </tbody>
@@ -215,7 +214,7 @@
       <br>
 
       <%= link_to 'Crear Solicitud', new_solicitud_path %>
-<%= link_to "Salir", logout_path , method: :delete, :class => 'navbar-link' %>
+    <%= link_to "Salir", logout_path , method: :delete, :class => 'navbar-link' %>
 
 
 		</main>

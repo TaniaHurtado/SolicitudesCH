@@ -8,11 +8,13 @@ class User < ApplicationRecord
   has_many :ubicacions, dependent: :destroy
   #validates :nombre,  :presence => true
 
-	enum role:{
+	enum rol:{
 	    "Responsable"  => 0,
 	    "Solicitante" => 1,
-	    "Admin" => 2
-	    
+	    "Admin" => 2	    
 	  }
 
+  def set_default_role
+    self.rol ||= 1
+  end
 end

@@ -1,6 +1,7 @@
 class UserController < ApplicationController
 	before_action :authenticate_user!
-	
+	after_action :verify_authorized
+
 	def finish_signup
 		if request.patch? && params[:user] # Revisa si el request es de tipo patch, es decir, llenaron el formulario y lo ingresaron
 			@user = User.find(params[:id])
@@ -13,6 +14,7 @@ class UserController < ApplicationController
 			end
 		end
 	end
+
 
 	def create
 	end
@@ -29,6 +31,15 @@ class UserController < ApplicationController
 	def show
 		@user = User.find(params[:id])
 	end
+
+	def responsable_solicituds
+		if current_user.rol == 0
+      		@solicitudes=Solicitud.where(correo_responsable: current_user.email)
+    #  		@solicitudes.push @solicitud
+		end
+	end
+
+
 
 	def destroyUser
 		@user = User.find(params[:id])

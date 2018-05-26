@@ -1,16 +1,29 @@
 Rails.application.routes.draw do
   
+  root 'welcome#index'
   resources :ubicacions
-  
   resources :solicituds do  	 
-      resources :evaluacions       
+    resources :evaluacions       
   end
-  
-  devise_for :users
 
   get 'place' => "solicituds#place"
   get 'welcome/index'
-  root 'welcome#index'
+  
+  scope 'Solicitante' do
+    resources :solicituds do     
+      resources :evaluacions       
+    end
+    match '/solicituds/:id/destroy', to: 'solicituds#destroySolicitud',via: [:delete], as: 'destroy'
+  end
+
+scope 'Responsable' do
+  get "responsable_solicituds" => "solicituds#responsable_solicituds"
+  match '/solicituds/:id/aceptar_solicitud', to: 'solicituds#aceptar_solicitud',via: [:put, :get], as: 'aceptar_solicitud'
+  match '/solicituds/:id/realizar_solicitud', to: 'solicituds#realizar_solicitud',via: [:put, :get], as: 'realizar_solicitud'
+  #put 'aceptar_solicitud' => 'solicituds#aceptar_solicitud'
+end
+  
+  devise_for :users  
   devise_scope :user do
   	#get "sign_in" => "devise/sessions#new"
     #get "sign_up" => "devise/registrations#new"
