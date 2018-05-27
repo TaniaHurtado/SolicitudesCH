@@ -5,7 +5,6 @@ class UserController < ApplicationController
 	def finish_signup
 		if request.patch? && params[:user] # Revisa si el request es de tipo patch, es decir, llenaron el formulario y lo ingresaron
 			@user = User.find(params[:id])
-
 			if @user.update(user_params)
 				sign_in(@user, :bypass => true)
 				redirect_to solicituds_path
@@ -16,10 +15,12 @@ class UserController < ApplicationController
 	end
 
 
+
 	def create
 	end
 
 	def new
+		
 	end
 
 	def index
@@ -63,7 +64,7 @@ class UserController < ApplicationController
 
 	private
 	def user_params
-	    accessible = [ :id, :nombre, :email, :cargo, :dependencia ] # extend with your own params
+	    accessible = [ :id, :nombre, :email, :cargo, :dependencia, :rol] # extend with your own params
 	    accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
 	    params.require(:user).permit(accessible)
 	  end

@@ -12,6 +12,7 @@ class SolicitudsController < ApplicationController
   # GET /solicituds.json
   def index 
     @solicituds = Solicitud.where(user_id: current_user.id)
+    #@evaluacion = Evaluacion.where(solicitud_id: @solicituds.id)
   end
   # GET /solicituds/1
   # GET /solicituds/1.json
@@ -70,6 +71,8 @@ class SolicitudsController < ApplicationController
     #SendSolicitudMailer.send_solicitud(@solicitud).responsable
     redirect_to responsable_solicituds_path
   end
+
+
 
   def generated_solicitud
     @solicituds=Solicitud.where("user_id = ? AND estado = ?", current_user.id, "Generada")

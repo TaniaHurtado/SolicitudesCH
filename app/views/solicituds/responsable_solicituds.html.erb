@@ -204,7 +204,10 @@
 		              <% if solicitud.estado == "Generada" %>
 		              	<td><%= link_to 'Aceptar',aceptar_solicitud_path(solicitud), method: :put, data: {confirm: '¿Estas seguro?'} %></td>
 		              <% elsif solicitud.estado == "Aceptada" %>
-			              <td><%= link_to 'Finalizar',realizar_solicitud_path(solicitud), method: :put, data: {confirm: '¿Estas seguro?'} %>	                            
+			              <td><%= link_to 'Finalizar',realizar_solicitud_path(solicitud), method: :put, data: {confirm: '¿Estas seguro?'} %></td>                            
+					            
+					    <% elsif solicitud.estado == "Evaluada" %>
+			              <td><%= link_to 'Ver Evaluación',solicitud_evaluacions_path(solicitud) %>	</td>                       
 					            </tr>
 		            <% end %>
 		          <% end %>

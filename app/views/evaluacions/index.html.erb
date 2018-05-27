@@ -1,31 +1,41 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Evaluacions</h1>
+
+<h1>Evaluacion de la Solicitud</h1>
 
 <table>
   <thead>
     <tr>
       <th>Calificacion</th>
       <th>Obervacion</th>
-      <th>Solicitud</th>
+      <th>Descripción de la solicitud</th>
+      <th>Responsable de la solicitud</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @evaluacions.each do |evaluacion| %>
+     
       <tr>
         <td><%= evaluacion.calificacion %></td>
         <td><%= evaluacion.obervacion %></td>
-        <td><%= evaluacion.solicitud %></td>
-        <td><%= link_to 'Ver', solicitud_evaluacion_path(@solicitud,evaluacion)%></td>
-        <td><%= link_to 'Editar', edit_solicitud_evaluacion_path(@solicitud,evaluacion) %></td>
-        <td><%= link_to 'Eliminar', solicitud_evaluacion_path(@solicitud,evaluacion), method: :delete, data: { confirm: 'Estas seguro?' } %></td>
+        <td><%= evaluacion.solicitud.descripcion %></td>
+        <td><%= evaluacion.solicitud.nombre_responsable %></td>
       </tr>
+      <% if evaluacion.solicitud.estado=="Realizada"%>
+      <td><%= link_to 'Nueva Evaluacion', new_solicitud_evaluacion_path %></td>
+      <% elsif evaluacion.solicitud.estado=="Generada" || evaluacion.solicitud.estado=="Aceptada" %>
+      <p>La solicitud no ha sido realizada, aún no puede evaluarse</p>
+      <% end %>
     <% end %>
   </tbody>
 </table>
 
+<% if policy(current_user).responsable? %>
+<%= link_to 'Regresar', responsable_solicituds_path %>
+<% else %>
+  <%= link_to 'Regresar', solicituds_path %>
+<% end %>
 <br>
 
-<%= link_to 'New Evaluacion', new_evaluacion_path %>

@@ -4,9 +4,25 @@ class EvaluacionsController < ApplicationController
   # GET /evaluacions
   # GET /evaluacions.json
   def index
-    @evaluacions = Evaluacion.all
+    #@solicitud = Solicitud.find_by_id(@evaluacion.solicitud_id)    
+    @solicitud = Solicitud.find(params[:solicitud_id])
+    @evaluacions = Evaluacion.where(solicitud_id: @solicitud.id)
+    
+    
   end
 
+  def solicitud_evaluada
+    #@evaluacion = Evaluacion.find(params[:id])
+    #@solicitud = Solicitud.find_by_id(@evaluacion.solicitud_id)    
+    @solicitud = Solicitud.find(params[:id])   
+    #@evaluacion = Evaluacion.Evaluacion.where(solicitud_id: @solicitud.id)
+
+
+    @solicitud.estado="Evaluada"
+    @solicitud.save
+
+    redirect_to solicituds_path
+  end
   # GET /evaluacions/1
   # GET /evaluacions/1.json
   def show
@@ -14,36 +30,46 @@ class EvaluacionsController < ApplicationController
 
   # GET /evaluacions/new
   def new
+    @solicitud = Solicitud.find(params[:solicitud_id])
     @evaluacion = Evaluacion.new
   end
 
   # GET /evaluacions/1/edit
   def edit
+    @solicitud = Solicitud.find(params[:solicitud_id])
   end
 
   # POST /evaluacions
   # POST /evaluacions.json
   def create
+    @solicitud = Solicitud.find(params[:solicitud_id])
     @evaluacion = Evaluacion.new(evaluacion_params)
 
-    respond_to do |format|
-      if @evaluacion.save
-        format.html { redirect_to @evaluacion, notice: 'Evaluacion was successfully created.' }
-        format.json { render :show, status: :created, location: @evaluacion }
-      else
-        format.html { render :new }
-        format.json { render json: @evaluacion.errors, status: :unprocessable_entity }
+    #respond_to do |format|
+      if @evaluacion.save        
+       
+        if @solicitud.estado == "Evaluada"
+          redirect_to solicituds_path
+        else
+           redirect_to solicitud_evaluada_path(@solicitud)
+        end
+        #format.html { redirect_to solicitud_evaluacions_path, notice: 'La evaluación fue creada' }
+       # format.json { render :show, status: :created, location:solicitud_evaluacions_path }
+      #else
+      #  format.html { render :new }
+      #  format.json { render json: @evaluacion.errors, status: :unprocessable_entity }
       end
-    end
+    #end
   end
 
   # PATCH/PUT /evaluacions/1
   # PATCH/PUT /evaluacions/1.json
   def update
+    @solicitud = Solicitud.find(params[:solicitud_id])
     respond_to do |format|
       if @evaluacion.update(evaluacion_params)
-        format.html { redirect_to @evaluacion, notice: 'Evaluacion was successfully updated.' }
-        format.json { render :show, status: :ok, location: @evaluacion }
+        format.html { redirect_to solicitud_evaluacions_path, notice: 'La evaluación fue actualizada' }
+        format.json { render :show, status: :ok, location: solicitud_evaluacions_path }
       else
         format.html { render :edit }
         format.json { render json: @evaluacion.errors, status: :unprocessable_entity }

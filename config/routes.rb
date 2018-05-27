@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :evaluacions       
     end
     match '/solicituds/:id/destroy', to: 'solicituds#destroySolicitud',via: [:delete], as: 'destroy'
+    match '/solicituds/:id/solicitud_evaluada', to: 'evaluacions#solicitud_evaluada',via: [:put, :get], as: 'solicitud_evaluada'
   end
 
 scope 'Responsable' do

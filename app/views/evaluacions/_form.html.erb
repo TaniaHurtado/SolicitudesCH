@@ -1,5 +1,8 @@
-<%= form_for(evaluacion) do |f| %>
+
+<%= form_for :evaluacion, url: solicitud_evaluacions_path do |f| %>
+  
   <% if evaluacion.errors.any? %>
+
     <div id="error_explanation">
       <h2><%= pluralize(evaluacion.errors.count, "error") %> prohibited this evaluacion from being saved:</h2>
 
@@ -13,7 +16,7 @@
 
   <div class="field">
     <%= f.label :calificacion %>
-    <%= f.number_field :calificacion %>
+    <%= f.select :calificacion, [1,2,3,4,5] %>
   </div>
 
   <div class="field">
@@ -21,10 +24,7 @@
     <%= f.text_field :obervacion %>
   </div>
 
-  <div class="field">
-    <%= f.label :solicitud_id %>
-    <%= f.text_field :solicitud_id %>
-  </div>
+   <%= f.hidden_field :solicitud_id, :value => @solicitud.id %>
 
   <div class="actions">
     <%= f.submit %>
