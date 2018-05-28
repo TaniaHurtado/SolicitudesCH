@@ -139,11 +139,11 @@ class SolicitudsController < ApplicationController
 
   # DELETE /solicituds/1
   # DELETE /solicituds/1.json
-  def destroySolicitud
+  def destroy
     @solicitud = Solicitud.find(params[:id])
     @solicitud.destroy
     respond_to do |format|
-      format.html { redirect_to solicitud_path, notice: 'Solicitud eliminada.' }
+      format.html { redirect_to solicituds_path, notice: 'Solicitud eliminada.' }
       format.json { head :no_content }
     end
   end

@@ -44,7 +44,11 @@
                   <% end %>
                   <% if solicitud.estado == "Generada" %>
                   <div class="actions boton"><%= link_to 'Editar',edit_solicitud_path(solicitud) %></div>
-                    <div class="actions boton"><%= link_to 'Eliminar',destroy_path(solicitud), method: :delete, data: {confirm: '¿Estas seguro?'} %></div>
+                    <div class="actions boton">
+                      <%= link_to 'Eliminar', solicitud_path(solicitud),  
+                                              method: :delete, 
+                                              data: {confirm: '¿Estás seguro que deseas eliminar la solicitud?'} %>
+                    </div>
                   <% end %>
                   <div class="actions boton"><%= link_to 'Ver Solicitud',solicitud %></div>
                 </td>
