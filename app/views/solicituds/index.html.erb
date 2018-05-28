@@ -35,7 +35,7 @@
                 <td colspan="1"><%= solicitud.materiales %></td>
                 <td colspan="1"><%= solicitud.fecha %></td>
                 <td colspan="1"><%= solicitud.lugar %></td>
-                <td colspan="1"><%= solicitud.nombre_responsable %></td>
+                <td colspan="1"><%= solicitud.nombre_responsable %> <%= solicitud.nombre_responsable2 %></td>
                 <td colspan="3" style="padding-bottom: 20px;">
                   <% if solicitud.estado == "Realizada" %>             
                     <div class="actions boton"><%= link_to 'Evaluar', new_solicitud_evaluacion_path(solicitud)%></div>
