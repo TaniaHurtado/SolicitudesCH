@@ -1,8 +1,10 @@
+
+<main class="detalle">
 <h1>Evaluar solicitud</h1>
 <p>Descripción:  <%= @solicitud.descripcion%></p>
 <p>Responsable:  <%= @solicitud.nombre_responsable%></p>
 
 
 <%= render 'form', evaluacion: @evaluacion %>
-
+</main>
 <%= link_to 'Regresar', new_solicitud_evaluacion_path %>
