@@ -35,6 +35,8 @@
 </main>
 <% if policy(current_user).responsable? %>
 <%= link_to 'Regresar', responsable_solicituds_path %>
+<% elsif policy(current_user).admin? %>
+<%= link_to 'Regresar', admin_solicituds_path %>
 <% else %>
   <%= link_to 'Regresar', solicituds_path %>
 <% end %>

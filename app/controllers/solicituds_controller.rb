@@ -38,13 +38,16 @@ class SolicitudsController < ApplicationController
     redirect_to generated_solicitud_path
   end
 
-
-  def responsable_solicituds
+  def admin_solicituds  
    
+      @solicituds=Solicitud.all
+  end
+
+
+  def responsable_solicituds   
    #if current_user.rol == 0
       @solicituds=Solicitud.where(correo_responsable: current_user.email)
    #end
-    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @solicituds }

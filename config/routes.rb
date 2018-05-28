@@ -23,6 +23,10 @@ scope 'Responsable' do
   #put 'aceptar_solicitud' => 'solicituds#aceptar_solicitud'
 end
   
+scope 'Admin' do
+  get "admin_solicituds" => "solicituds#admin_solicituds"
+end
+
   devise_for :users  
   devise_scope :user do
   	#get "sign_in" => "devise/sessions#new"

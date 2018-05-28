@@ -1,3 +1,4 @@
+
 <main class="detalle">
 			<div class="breadcrumb-class">Está en:<a href="index.html" target="_self" title="Inicio">Ciencias Humanas</a><span>Solicitudes </span></div>
 						<h1 style="text-align: center;"> SISTEMA DE SOLICITUDES </h1>
@@ -5,7 +6,7 @@
   
 			<p id="notice"><%= notice %></p>
 
-      <h1 style="text-align: center">Mis Solicitudes</h1>
+      <h1 style="text-align: center">Solicitudes</h1>
 			<table style="width:100%">
 		        <thead>
 		          <tr>
@@ -15,7 +16,7 @@
 		            <th>Importancia</th>
 		            <th>Estado</th>
 		            <th>Materiales</th>
-		            <th>Fecha</th>
+		            <th>Fecha de solicitud</th>
 		            <th>Lugar</th>
 		            <th>Responsable</th>      
 		            <th>Acciones</th>
@@ -27,7 +28,7 @@
 		          <% @solicituds.each do |solicitud| %>
 		            <tr>
 		              <td> <% @user = User.find(solicitud.user)   %>
-		                    <%= @user.nombre %> <%= @user.apellido %> </td>
+		                    <%= @user.email  %></td>
 		              <td><%= solicitud.descripcion %></td>
 		              <td><%= solicitud.tipo %></td>
 		              <td><%= solicitud.importancia %></td>
@@ -35,19 +36,14 @@
 		              <td><%= solicitud.materiales %></td>
 		              <td><%= solicitud.fecha %></td>
 		              <td><%= solicitud.lugar %></td>
-		              <td><%= solicitud.nombre_responsable %></td>
-		              <% if solicitud.estado == "Generada" %>
-		              	<td><%= link_to 'Aceptar',aceptar_solicitud_path(solicitud), method: :put, data: {confirm: '¿Estas seguro?'} %></td>
-		              <% elsif solicitud.estado == "Aceptada" %>
-			              <td><%= link_to 'Finalizar',realizar_solicitud_path(solicitud), method: :put, data: {confirm: '¿Estas seguro?'} %></td>                            
-					            
-					    <% elsif solicitud.estado == "Evaluada" %>
+		              <td><%= solicitud.nombre_responsable %></td>          
+					    <% if solicitud.estado == "Evaluada" %>
 			              <td><%= link_to 'Ver Evaluación',solicitud_evaluacions_path(solicitud) %>	</td>                       
 					            </tr>
 		            <% end %>
 		          <% end %>
 		        </tbody>
-	      </table>   
-	<%= link_to "Salir", destroy_user_session_path , method: :delete, :class => 'navbar-link' %>
-   
+	      </table>     
+	<%= link_to "Salir", destroy_user_session_path , method: :delete, :class => 'navbar-link' %> 
 </main>
+
