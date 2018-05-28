@@ -6,7 +6,7 @@
 			<p id="notice"><%= notice %></p>
 
       <h1 style="text-align: center">Mis Solicitudes</h1>
-      <div style="overflow-x:auto;">
+      <div class="div-table">
         <table style="width:100%" class="sol_table">
           <thead>
             <tr>
@@ -58,7 +58,9 @@
         </table>
       </div>
       <br>
+      <div class="links">
           <%= link_to 'Crear Solicitud', new_solicitud_path %>
-    <%= link_to "Salir", destroy_user_session_path , method: :delete, :class => 'navbar-link' %>
+          <%= link_to "Salir", destroy_user_session_path , method: :delete, :class => 'navbar-link' %>
+      </div>
 </main>
  

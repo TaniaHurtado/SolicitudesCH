@@ -10,6 +10,9 @@
     <strong>User:</strong>
     <%= @ubicacion.user %>
   </p>
+  <div class="links">
+    <%= link_to 'Edit', edit_ubicacion_path(@ubicacion) %> |
+    <%= link_to 'Back', ubicacions_path %>
+  </div>
 </main>
-<%= link_to 'Edit', edit_ubicacion_path(@ubicacion) %> |
-<%= link_to 'Back', ubicacions_path %>
+
