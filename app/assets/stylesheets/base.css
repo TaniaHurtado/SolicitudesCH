@@ -7,6 +7,8 @@
     background: rgba(0,0,0,0.5);
     padding: 20px;
     color: white;
+    height: auto;
+
 }
 
 .field{
@@ -91,4 +93,41 @@ tr:nth-child(even) {background-color: #bebebe;}
     -moz-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
+}
+
+.register-content .title{
+    font-size: 16px;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 1px;
+    height: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: rgb(145, 146, 145); 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background:  rgb(68, 68, 68);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+}
+
+.div-table{
+    overflow-x:auto;
+    border: 1px solid black;
+}
+
+.links a{
+    font-size: large;
+    background-color: #5b5b5b;
+    padding: 5px 15px;
+    color: white;
 }

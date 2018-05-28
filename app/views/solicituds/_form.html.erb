@@ -1,4 +1,4 @@
-<main class="detalle">
+
 <%= form_for(solicitud) do |f| %>
   <% if solicitud.errors.any? %>
     <div id="error_explanation">
@@ -13,7 +13,7 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :descripcion %><br>
+    <%= f.label :descripción %><br>
     <%= f.text_field :descripcion %>
   </div>
 
@@ -25,7 +25,7 @@
 
 
   <div class="field">
-    <%= f.label :importancia %>
+    <%= f.label :importancía %>
     <%= f.select  :importancia, ['Urgente', 'Programable']%>
   </div>
 
@@ -36,7 +36,7 @@
 
   <div class="field">
     <%= f.label :fecha %>
-    <%= f.datetime_select :fecha %>
+    <%= f.datetime_select :fecha, {:use_month_names => ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre','Diciembre']}%>
   </div>
 
   <div class="field">
@@ -46,11 +46,7 @@
 
   <%= f.hidden_field :user_id, :value => current_user.id %>
 
-  
-  
-
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Actualizar Solicitud" %>
   </div>
 <% end %>
-</main>
