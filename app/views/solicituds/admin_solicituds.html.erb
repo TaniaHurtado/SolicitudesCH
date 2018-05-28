@@ -1,4 +1,3 @@
-
 <main class="detalle">
 			<div class="breadcrumb-class">Está en:<a href="index.html" target="_self" title="Inicio">Ciencias Humanas</a><span>Solicitudes </span></div>
 						<h1 style="text-align: center;"> SISTEMA DE SOLICITUDES </h1>
@@ -7,43 +6,46 @@
 			<p id="notice"><%= notice %></p>
 
       <h1 style="text-align: center">Solicitudes</h1>
-			<table style="width:100%">
+      <div style="overflow-x:auto;">
+			<table style="width:100%" class="sol_table">
 		        <thead>
 		          <tr>
-		            <th>Solicitante</th>
-		            <th>Descripcion</th>
-		            <th>Tipo</th>
-		            <th>Importancia</th>
-		            <th>Estado</th>
-		            <th>Materiales</th>
-		            <th>Fecha de solicitud</th>
-		            <th>Lugar</th>
-		            <th>Responsable</th>      
-		            <th>Acciones</th>
-		            <th colspan="3"></th>
+		            <th colspan="1">Solicitante</th>
+		            <th colspan="1">Descripcion</th>
+		            <th colspan="1">Tipo</th>
+		            <th colspan="1">Importancia</th>
+		            <th colspan="1">Estado</th>
+		            <th colspan="1">Materiales</th>
+		            <th colspan="1">Fecha</th>
+		            <th colspan="1">Lugar</th>
+		            <th colspan="1">Responsable</th> <th colspan="1">Evaluación</th>
 		          </tr>
 		        </thead>
 
 		        <tbody>
 		          <% @solicituds.each do |solicitud| %>
-		            <tr>
-		              <td> <% @user = User.find(solicitud.user)   %>
-		                    <%= @user.email  %></td>
-		              <td><%= solicitud.descripcion %></td>
-		              <td><%= solicitud.tipo %></td>
-		              <td><%= solicitud.importancia %></td>
-		              <td><%= solicitud.estado %></td>
-		              <td><%= solicitud.materiales %></td>
-		              <td><%= solicitud.fecha %></td>
-		              <td><%= solicitud.lugar %></td>
-		              <td><%= solicitud.nombre_responsable %></td>          
-					    <% if solicitud.estado == "Evaluada" %>
-			              <td><%= link_to 'Ver Evaluación',solicitud_evaluacions_path(solicitud) %>	</td>                       
-					            </tr>
+		            <tr class="sol_table">
+		              <td colspan="1"> <% @user = User.find(solicitud.user)   %>
+		                    <%= @user.nombre %> <%= @user.apellido %> </td>
+		              <td colspan="1"><%= solicitud.descripcion %></td>
+		              <td colspan="1"><%= solicitud.tipo %></td>
+		              <td colspan="1"><%= solicitud.importancia %></td>
+		              <td colspan="1"><%= solicitud.estado %></td>
+		              <td colspan="1"><%= solicitud.materiales %></td>
+		              <td colspan="1"><%= solicitud.fecha %></td>
+		              <td colspan="1"><%= solicitud.lugar %></td>
+		              <td colspan="1"><%= solicitud.nombre_responsable %> <%= solicitud.nombre_responsable2 %></td>
+		              <td colspan="3" style="padding-bottom: 15px;">
+		                 <% if solicitud.estado == "Evaluada" %>
+			              <div class="actions boton"><%= link_to 'Ver Evaluación',solicitud_evaluacions_path(solicitud) %>	</div>
+			            </td>                       
+					    </tr>
 		            <% end %>
 		          <% end %>
 		        </tbody>
-	      </table>     
-	<%= link_to "Salir", destroy_user_session_path , method: :delete, :class => 'navbar-link' %> 
+	      </table> 
+	      <br>  
+	<%= link_to "Salir", destroy_user_session_path , method: :delete, :class => 'navbar-link' %>|
+	<%= link_to "Regresar", welcome_index_path  %>
+   
 </main>
-
