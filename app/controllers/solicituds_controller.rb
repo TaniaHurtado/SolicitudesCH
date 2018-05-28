@@ -85,21 +85,39 @@ class SolicitudsController < ApplicationController
   # POST /solicituds
   # POST /solicituds.json
   def create
-    @lugar = Ubicacion.find_by(lugar: params[:solicitud][:lugar])
-    @responsable = User.find(@lugar.user_id)
-    
+     
+    #edificios= new Array(2)
+    #.pluck(:id) devuelve un arreglo con los ids
+    @lugares = Ubicacion.where(lugar: params[:solicitud][:lugar]).pluck(:id)
+   
+    @lugares.each do |e|
+
+      print e
+    end
+    print @lugares
+
+    @lugar1 = Ubicacion.find(@lugares[0])
+    @responsable1 = User.find(@lugar1.user_id)
     #@solicitud = Solicitud.new(descripcion: params[:solicitud][:descripcion], tipo: params[:solicitud][:tipo], importancia: params[:solicitud][:importancia], estado: 'Generada', materiales: params[:solicitud][:materiales], fecha: params[:solicitud][:fecha], correo_responsable: "mauricio", nombre_responsable: "Mauricio", lugar: params[:solicitud][:lugar], user_id: current_user.id)
     @solicitud = Solicitud.new(solicitud_params)
     @solicitud.estado="Generada"
-    @solicitud.ubicacion_id = @lugar.id
-    @solicitud.nombre_responsable=@responsable.nombre
-    @solicitud.correo_responsable=@responsable.email
+    @solicitud.ubicacion_id = @lugares[0]
+    @solicitud.nombre_responsable=@responsable1.nombre
+    @solicitud.correo_responsable=@responsable1.email
+    if @lugares.length == 2
+
+      @lugar2 = Ubicacion.find(@lugares[1])
+      @responsable2 = User.find(@lugar2.user_id)
+      @solicitud.nombre_responsable2=@responsable2.nombre
+      @solicitud.correo_responsable2=@responsable2.email
+    end
+
     respond_to do |format|
       if @solicitud.save
         format.html { redirect_to @solicitud, notice: 'Solicitud was successfully created.' }
         format.json { render :show, status: :created, location: @solicitud }
       else
-        format.html { render :new }
+        format.html { render :new } 
         format.json { render json: @solicitud.errors, status: :unprocessable_entity }
       end
     end

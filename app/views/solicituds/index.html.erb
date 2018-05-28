@@ -200,7 +200,7 @@
               <td><%= solicitud.materiales %></td>
               <td><%= solicitud.fecha %></td>
               <td><%= solicitud.lugar %></td>
-              <td><%= solicitud.nombre_responsable %></td>
+              <td><%= solicitud.nombre_responsable %> <%= solicitud.nombre_responsable2 %> </td>
               <% if solicitud.estado == "Realizada" %>             
               <td><%= link_to 'Evaluar', new_solicitud_evaluacion_path(solicitud)%></td>
               <% elsif solicitud.estado == "Evaluada" %>

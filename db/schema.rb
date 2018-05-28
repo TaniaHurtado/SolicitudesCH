@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180508181730) do
+ActiveRecord::Schema.define(version: 20180528020619) do
 
   create_table "evaluacions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "calificacion"
@@ -30,11 +30,13 @@ ActiveRecord::Schema.define(version: 20180508181730) do
     t.datetime "fecha"
     t.string   "lugar"
     t.integer  "user_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.string   "nombre_responsable"
     t.string   "correo_responsable"
     t.integer  "ubicacion_id"
+    t.string   "nombre_responsable2"
+    t.string   "correo_responsable2"
     t.index ["ubicacion_id"], name: "index_solicituds_on_ubicacion_id", using: :btree
     t.index ["user_id"], name: "index_solicituds_on_user_id", using: :btree
   end
