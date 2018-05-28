@@ -96,7 +96,7 @@ class SolicitudsController < ApplicationController
     @solicitud.correo_responsable=@responsable.email
     respond_to do |format|
       if @solicitud.save
-        format.html { redirect_to @solicitud, notice: 'Solicitud was successfully created.' }
+        format.html { redirect_to @solicitud, notice: 'La solicitud fue creada de manera exitosa' }
         format.json { render :show, status: :created, location: @solicitud }
       else
         format.html { render :new }
@@ -138,6 +138,6 @@ class SolicitudsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def solicitud_params
-      params.require(:solicitud).permit(:descripcion, :tipo, :importancia, :estado, :materiales, :fecha, :correo_responsable, :nombre_responsable, :lugar, :user_id, :ubicacion_id)
+      params.require(:solicitud).permit(:descripción, :tipo, :importancía, :estado, :materiales, :fecha, :correo_responsable, :nombre_responsable, :lugar, :user_id, :ubicacion_id)
     end
 end

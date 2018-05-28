@@ -55,3 +55,40 @@
     border-width: 2px;
     border-style: outset;
 }
+
+.boton a{
+    padding: 6px;
+}
+
+.sol_table td, th{
+    text-align: center;
+    padding: 5px 10px;
+    border-bottom: 2px solid rgba(80, 80, 80, 0.651);
+}
+tr:nth-child(even) {background-color: #bebebe;}
+
+.sol_table td{
+    vertical-align: middle;
+}
+
+.sol_table .boton{
+    padding: 20px 10px;
+}
+.no-padding{
+    padding: 0!important;
+}
+
+.no-overflow{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    min-height: 100vh;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -moz-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}

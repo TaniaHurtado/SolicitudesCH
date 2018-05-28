@@ -1,59 +1,60 @@
-
-			<div class="breadcrumb-class">Está en:<a href="index.html" target="_self" title="Inicio">Ciencias Humanas</a><span>Solicitudes </span></div>
+<main class="detalle">
+			<div class="breadcrumb-class">Está en:<a href="index.html" target="_self" title="Inicio">Ciencias Humanas</a><span>> Solicitudes </span></div>
 						<h1 style="text-align: center;"> SISTEMA DE SOLICITUDES </h1>
 			<h2 style="text-align: center;"> FACULTAD CIENCIAS HUMANAS </h2>
   
 			<p id="notice"><%= notice %></p>
 
       <h1 style="text-align: center">Mis Solicitudes</h1>
-      <table style="width:100%">
-        <thead>
-          <tr>
-            <th>Usuario</th>
-            <th>Descripcion</th>
-            <th>Tipo</th>
-            <th>Importancia</th>
-            <th>Estado</th>
-            <th>Materiales</th>
-            <th>Fecha</th>
-            <th>Lugar</th>
-            <th>Responsable</th>     
-            <th>Acciones</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <% @solicituds.each do |solicitud| %>
+      <div style="overflow-x:auto;">
+        <table style="width:100%" class="sol_table">
+          <thead>
             <tr>
-              <td> <% @user = User.find(solicitud.user)   %>
-                    <%= @user.email  %></td>
-              <td><%= solicitud.descripcion %></td>
-              <td><%= solicitud.tipo %></td>
-              <td><%= solicitud.importancia %></td>
-              <td><%= solicitud.estado %></td>
-              <td><%= solicitud.materiales %></td>
-              <td><%= solicitud.fecha %></td>
-              <td><%= solicitud.lugar %></td>
-              <td><%= solicitud.nombre_responsable %></td>
-              <% if solicitud.estado == "Realizada" %>             
-              <td><%= link_to 'Evaluar', new_solicitud_evaluacion_path(solicitud)%></td>
-              <% elsif solicitud.estado == "Evaluada" %>
-              	<td><%= link_to 'Ver Calificación', solicitud_evaluacions_path(solicitud) %></td>
-              <% end %>
-              <% if solicitud.estado == "Generada" %>
-              	<td><%= link_to 'Editar',edit_solicitud_path(solicitud) %></td>
-              <td><%= link_to 'Eliminar',destroy_path(solicitud), method: :delete, data: {confirm: '¿Estas seguro?'} %></td>
-              	<% end %>
-                <td><%= link_to 'Ver Solicitud',solicitud %></td>
-                
+              <th colspan="1">Usuario</th>
+              <th colspan="1">Descripcion</th>
+              <th colspan="1">Tipo</th>
+              <th colspan="1">Importancia</th>
+              <th colspan="1">Estado</th>
+              <th colspan="1">Materiales</th>
+              <th colspan="1">Fecha</th>
+              <th colspan="1">Lugar</th>
+              <th colspan="1">Responsable</th>     
+              <th colspan="3">Acciones</th>
             </tr>
-          <% end %>
-        </tbody>
-      </table>
+          </thead>
 
+          <tbody>
+            <% @solicituds.each do |solicitud| %>
+              <tr class="sol_table">
+                <td colspan="1"> <% @user = User.find(solicitud.user)   %>
+                      <%= @user.email  %></td>
+                <td colspan="1"><%= solicitud.descripcion %></td>
+                <td colspan="1"><%= solicitud.tipo %></td>
+                <td colspan="1"><%= solicitud.importancia %></td>
+                <td colspan="1"><%= solicitud.estado %></td>
+                <td colspan="1"><%= solicitud.materiales %></td>
+                <td colspan="1"><%= solicitud.fecha %></td>
+                <td colspan="1"><%= solicitud.lugar %></td>
+                <td colspan="1"><%= solicitud.nombre_responsable %></td>
+                <td colspan="3" style="padding-bottom: 20px;">
+                  <% if solicitud.estado == "Realizada" %>             
+                    <div class="actions boton"><%= link_to 'Evaluar', new_solicitud_evaluacion_path(solicitud)%></div>
+                  <% elsif solicitud.estado == "Evaluada" %>
+                  <div class="actions boton">	<%= link_to 'Ver Calificación', solicitud_evaluacions_path(solicitud) %></div>
+                  <% end %>
+                  <% if solicitud.estado == "Generada" %>
+                  <div class="actions boton"><%= link_to 'Editar',edit_solicitud_path(solicitud) %></div>
+                    <div class="actions boton"><%= link_to 'Eliminar',destroy_path(solicitud), method: :delete, data: {confirm: '¿Estas seguro?'} %></div>
+                  <% end %>
+                  <div class="actions boton"><%= link_to 'Ver Solicitud',solicitud %></div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
       <br>
-
-      <%= link_to 'Crear Solicitud', new_solicitud_path %>
+          <%= link_to 'Crear Solicitud', new_solicitud_path %>
     <%= link_to "Salir", logout_path , method: :delete, :class => 'navbar-link' %>
-
+</main>
+ 
