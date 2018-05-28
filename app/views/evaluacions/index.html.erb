@@ -1,3 +1,4 @@
+<main class="detalle">
 <p id="notice"><%= notice %></p>
 
 
@@ -31,7 +32,7 @@
     <% end %>
   </tbody>
 </table>
-
+</main>
 <% if policy(current_user).responsable? %>
 <%= link_to 'Regresar', responsable_solicituds_path %>
 <% else %>
