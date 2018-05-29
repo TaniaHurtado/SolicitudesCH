@@ -1,5 +1,14 @@
-<h1>New Informe</h1>
+<main class="detalle">
+	<div class="breadcrumb-class">Está en:<a href="index.html" target="_self" title="Inicio">Ciencias Humanas</a><span>Informes </span></div>
+				<h1 style="text-align: center;"> SISTEMA DE SOLICITUDES </h1>
+	<h2 style="text-align: center;"> FACULTAD CIENCIAS HUMANAS </h2>
+		<div class="links">
+		<%= link_to 'Regresar', informes_path,  :class => 'navbar-link' %>
+	</div>
+	
+	<div class="register-content">
+		<h1 class="register-label">Nuevo Informe</h1>
 
-<%= render 'form', informe: @informe %>
-
-<%= link_to 'Back', informes_path,  :class => 'navbar-link' %>
+		<%= render 'form', informe: @informe %>
+	</div>
+</main>

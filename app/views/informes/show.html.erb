@@ -1,17 +1,21 @@
 
-<p id="notice"><%= notice %></p>
+<main class="detalle">
+			<div class="breadcrumb-class">Está en:<a href="index.html" target="_self" title="Inicio">Ciencias Humanas</a><span> > Informes > Detalle Informe </span></div>
+						<h1 style="text-align: center;"> SISTEMA DE SOLICITUDES </h1>
+            <p class="field" id="notice"><%= notice %></p>
+            <div class="links">
+            <%= link_to 'Editar', edit_informe_path(@informe),  :class => 'navbar-link'%> |
+			<%= link_to 'Regresar', informes_path,  :class => 'navbar-link' %>
+          </div>
+        <div class="register-content">
+          <p class="field">
+            <strong class="title">Nombre:</strong>
+  			<%= @informe.nombre %> </p>
+			<p class="field">
+			  <strong class="title">Tabla:</strong> <br>
+			  <%= image_tag @informe.archivo.url, :width => 500, :height => 390  %>
+			</p>
+</div>
+          
+</main>
 
-<p>
-  <strong>Nombre:</strong>
-  <%= @informe.nombre %>
-</p>
-
-
-<p>
-  <strong>Image:</strong>
-  <%= @informe.archivo %>
-  <%= image_tag @informe.archivo.url, :width => 170, :height => 190  %>
-</p>
-
-<%= link_to 'Edit', edit_informe_path(@informe),  :class => 'navbar-link'%> |
-<%= link_to 'Back', informes_path,  :class => 'navbar-link' %>
