@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :informes
   root 'welcome#index'
   resources :ubicacions
   resources :solicituds do  	 

@@ -1,0 +1,17 @@
+
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @informe.nombre %>
+</p>
+
+
+<p>
+  <strong>Image:</strong>
+  <%= @informe.archivo %>
+  <%= image_tag @informe.archivo.url, :width => 170, :height => 190  %>
+</p>
+
+<%= link_to 'Edit', edit_informe_path(@informe),  :class => 'navbar-link'%> |
+<%= link_to 'Back', informes_path,  :class => 'navbar-link' %>

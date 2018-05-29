@@ -1,0 +1,34 @@
+
+  
+
+<p id="notice"><%= notice %></p>
+
+<h1>Informes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Archivo</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @informes.each do |informe| %>
+      <tr>
+        <td><%= informe.nombre %></td>
+        <td><%= image_tag informe.archivo.url, :width => 170, :height => 190  %></td>
+        <td><%= link_to 'Ver', informe %></td>
+        <td><%= link_to 'Editar', edit_informe_path(informe) %></td>
+        <td><%= link_to 'Eliminar', informe, method: :delete, data: { confirm: 'Estas seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nuevo Informe', new_informe_path,  :class => 'navbar-link' %>
+<br>
+<br>
