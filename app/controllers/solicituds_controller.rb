@@ -129,9 +129,11 @@ class SolicitudsController < ApplicationController
   # PATCH/PUT /solicituds/1
   # PATCH/PUT /solicituds/1.json
   def update
+    
     respond_to do |format|
-      if @solicitud.update(params)
-        #format.html { redirect_to @solicitud, notice: 'Solicitud was successfully updated.' }
+      @solicitud = Solicitud.find(params[:id])
+      if @solicitud.update(solicitud_params)
+        format.html { redirect_to @solicitud, notice: 'La solicitud fue actualizada de manera correcta' }
         format.json { render :show, status: :ok, location: @solicitud }
       else
         format.html { render :edit }
@@ -159,6 +161,6 @@ class SolicitudsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def solicitud_params
-      params.require(:solicitud).permit(:descripción, :tipo, :importancía, :estado, :materiales, :fecha, :correo_responsable, :nombre_responsable, :lugar, :user_id, :ubicacion_id)
+      params.require(:solicitud).permit(:descripcion, :tipo, :importancia, :estado, :materiales, :fecha, :correo_responsable, :nombre_responsable, :lugar, :user_id, :ubicacion_id)
     end
 end

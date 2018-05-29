@@ -1,4 +1,4 @@
-<main class="detalle">
+
 <%= form_for :evaluacion, url: solicitud_evaluacions_path do |f| %>
   
   <% if evaluacion.errors.any? %>
@@ -27,7 +27,6 @@
    <%= f.hidden_field :solicitud_id, :value => @solicitud.id %>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Guardar Evaluación"%>
   </div>
 <% end %>
-</main>

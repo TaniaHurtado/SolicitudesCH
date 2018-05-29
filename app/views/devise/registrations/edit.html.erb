@@ -4,7 +4,9 @@
 			<h2 style="text-align: center;"> FACULTAD CIENCIAS HUMANAS </h2>
 <div class="register-content">
   <h2 class="register-label">Editar <%= resource_name.to_s.humanize %></h2>
-
+<div class="links">
+  <%= link_to "Regresar", :back %>
+</div>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= devise_error_messages! %>
 
@@ -45,5 +47,6 @@
 
   <p>Unhappy? <%= button_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 </div>
+
 </main>
-  <%= link_to "Regresar", :back %>
+  

@@ -1,10 +1,20 @@
 
 <main class="detalle">
-<h1>Evaluar solicitud</h1>
-<p>Descripción:  <%= @solicitud.descripcion%></p>
-<p>Responsable:  <%= @solicitud.nombre_responsable%></p>
+<div class="breadcrumb-class">Está en:<a href="index.html" target="_self" title="Inicio">Ciencias Humanas</a><span>Solicitudes </span></div>
+						<h1 style="text-align: center;"> SISTEMA DE SOLICITUDES </h1>
+			<h2 style="text-align: center;"> FACULTAD CIENCIAS HUMANAS </h2>
+            <div class="links">        
+                <%= link_to 'Regresar', new_solicitud_evaluacion_path %>
+            </div>
+            
+
+            <div class="register-content">
+                <h1 class="field">Evaluar solicitud</h1>
+                <p class="field">Descripción:  <%= @solicitud.descripcion%></p>
+                <p class="field">Responsable:  <%= @solicitud.nombre_responsable%></p>
+                <%= render 'form', evaluacion: @evaluacion %>
+            </div>
 
 
-<%= render 'form', evaluacion: @evaluacion %>
 </main>
-<%= link_to 'Regresar', new_solicitud_evaluacion_path %>
+

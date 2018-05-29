@@ -1,7 +1,10 @@
 <main class="detalle">
     <h1>Editing Ubicacion</h1>
-
+        <div class="links">
+        <%= link_to 'Show', @ubicacion %> |
+        <%= link_to 'Back', ubicacions_path %>
+    </div>
     <%= render 'form', ubicacion: @ubicacion %>
+
 </main>
-<%= link_to 'Show', @ubicacion %> |
-<%= link_to 'Back', ubicacions_path %>
+
