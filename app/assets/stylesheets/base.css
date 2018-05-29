@@ -134,3 +134,11 @@ tr:nth-child(even) {background-color: #bebebe;}
     padding: 5px 15px;
     color: white;
 }
+
+.centerText{
+    text-align: center;
+}
+
+.maxWidth{
+    width: 100%;
+}
