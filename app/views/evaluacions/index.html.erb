@@ -1,44 +1,50 @@
 <main class="detalle">
 <p id="notice"><%= notice %></p>
 
+<div class="breadcrumb-class">Está en:<a href="index.html" target="_self" title="Inicio">Ciencias Humanas</a><span>Solicitudes </span></div>
+						<h1 style="text-align: center;"> SISTEMA DE SOLICITUDES </h1>
+			<h2 style="text-align: center;"> FACULTAD CIENCIAS HUMANAS </h2>
+            <div class="links">        
+                <% if policy(current_user).responsable? %>
+                <%= link_to 'Regresar', responsable_solicituds_path %>
+                <% elsif policy(current_user).admin? %>
+                <%= link_to 'Regresar', admin_solicituds_path %>
+                <% else %>
+                  <%= link_to 'Regresar', solicituds_path %>
+                <% end %>
+            </div>
+            
 
-<h1>Evaluacion de la Solicitud</h1>
+            <h1 class="centerText">Evaluación de la Solicitud</h1>
+          <div class="div-table">
+            <table class="sol_table maxWidth">
+              <thead>
+                <tr>
+                  <th>Calificación</th>
+                  <th>Obervación</th>
+                  <th>Descripción de la solicitud</th>
+                  <th>Responsable de la solicitud</th>
+                  <th colspan="3"></th>
+                </tr>
+              </thead>
 
-<table>
-  <thead>
-    <tr>
-      <th>Calificacion</th>
-      <th>Obervacion</th>
-      <th>Descripción de la solicitud</th>
-      <th>Responsable de la solicitud</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @evaluacions.each do |evaluacion| %>
-     
-      <tr>
-        <td><%= evaluacion.calificacion %></td>
-        <td><%= evaluacion.obervacion %></td>
-        <td><%= evaluacion.solicitud.descripcion %></td>
-        <td><%= evaluacion.solicitud.nombre_responsable %></td>
-      </tr>
-      <% if evaluacion.solicitud.estado=="Realizada"%>
-      <td><%= link_to 'Nueva Evaluacion', new_solicitud_evaluacion_path %></td>
-      <% elsif evaluacion.solicitud.estado=="Generada" || evaluacion.solicitud.estado=="Aceptada" %>
-      <p>La solicitud no ha sido realizada, aún no puede evaluarse</p>
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
-</main>
-<% if policy(current_user).responsable? %>
-<%= link_to 'Regresar', responsable_solicituds_path %>
-<% elsif policy(current_user).admin? %>
-<%= link_to 'Regresar', admin_solicituds_path %>
-<% else %>
-  <%= link_to 'Regresar', solicituds_path %>
-<% end %>
-<br>
+              <tbody>
+                <% @evaluacions.each do |evaluacion| %>
+                
+                  <tr>
+                    <td><%= evaluacion.calificacion %></td>
+                    <td><%= evaluacion.obervacion %></td>
+                    <td><%= evaluacion.solicitud.descripcion %></td>
+                    <td><%= evaluacion.solicitud.nombre_responsable %></td>
+                  </tr>
+                  <% if evaluacion.solicitud.estado=="Realizada"%>
+                  <td><%= link_to 'Nueva Evaluacion', new_solicitud_evaluacion_path %></td>
+                  <% elsif evaluacion.solicitud.estado=="Generada" || evaluacion.solicitud.estado=="Aceptada" %>
+                  <p>La solicitud no ha sido realizada, aún no puede evaluarse</p>
+                  <% end %>
+                <% end %>
+              </tbody>
+            </table>
+            </div>
+            </main>
 
