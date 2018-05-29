@@ -2,7 +2,6 @@
 .register-content{
     text-align: center;
     margin:auto;
-    margin-top: 40px;
     width: 50%;
     background: rgba(0,0,0,0.5);
     padding: 20px;
@@ -31,7 +30,6 @@
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    border-radius: 10px;
 }
 
 .field select{
@@ -123,6 +121,11 @@ tr:nth-child(even) {background-color: #bebebe;}
 .div-table{
     overflow-x:auto;
     border: 1px solid black;
+}
+
+.links{
+    display: block;
+    margin: 25px 0px;
 }
 
 .links a{

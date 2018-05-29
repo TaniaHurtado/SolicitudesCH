@@ -1,11 +1,15 @@
 <main class="detalle">
-			<div class="breadcrumb-class">Está en:<a href="index.html" target="_self" title="Inicio">Ciencias Humanas</a><span>> Solicitudes </span></div>
+			<div class="breadcrumb-class">Está en:<a href="index.html" target="_self" title="Inicio">Ciencias Humanas</a><span> > Solicitudes </span></div>
 						<h1 style="text-align: center;"> SISTEMA DE SOLICITUDES </h1>
 			<h2 style="text-align: center;"> FACULTAD CIENCIAS HUMANAS </h2>
   
 			<p id="notice"><%= notice %></p>
 
       <h1 style="text-align: center">Mis Solicitudes</h1>
+      <div class="links">
+          <%= link_to 'Crear Solicitud', new_solicitud_path %>
+          <%= link_to "Salir", destroy_user_session_path , method: :delete, :class => 'navbar-link' %>
+      </div>
       <div class="div-table">
         <table style="width:100%" class="sol_table">
           <thead>
@@ -58,9 +62,6 @@
         </table>
       </div>
       <br>
-      <div class="links">
-          <%= link_to 'Crear Solicitud', new_solicitud_path %>
-          <%= link_to "Salir", destroy_user_session_path , method: :delete, :class => 'navbar-link' %>
-      </div>
 </main>
+ 
  
