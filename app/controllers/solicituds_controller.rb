@@ -129,9 +129,11 @@ class SolicitudsController < ApplicationController
   # PATCH/PUT /solicituds/1
   # PATCH/PUT /solicituds/1.json
   def update
+    
     respond_to do |format|
-      if @solicitud.update(params)
-        #format.html { redirect_to @solicitud, notice: 'Solicitud was successfully updated.' }
+      @solicitud = Solicitud.find(params[:id])
+      if @solicitud.update(solicitud_params)
+        format.html { redirect_to @solicitud, notice: 'La solicitud fue actualizada de manera corecta' }
         format.json { render :show, status: :ok, location: @solicitud }
       else
         format.html { render :edit }
