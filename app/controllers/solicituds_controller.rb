@@ -133,7 +133,7 @@ class SolicitudsController < ApplicationController
     respond_to do |format|
       @solicitud = Solicitud.find(params[:id])
       if @solicitud.update(solicitud_params)
-        format.html { redirect_to @solicitud, notice: 'La solicitud fue actualizada de manera corecta' }
+        format.html { redirect_to @solicitud, notice: 'La solicitud fue actualizada de manera correcta' }
         format.json { render :show, status: :ok, location: @solicitud }
       else
         format.html { render :edit }
