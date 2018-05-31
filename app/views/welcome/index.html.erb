@@ -13,7 +13,7 @@
 				<%= link_to " Mis Solicitudes", responsable_solicituds_path, :class => 'navbar-link' %> |			
 					<% elsif policy(current_user).admin? %>
 				<%= link_to " Ver Solicitudes", admin_solicituds_path, :class => 'navbar-link' %> |
-				<%= link_to "Informes", admin_solicituds_path, :class => 'navbar-link' %> |
+				<%= link_to "Informes", informes_path, :class => 'navbar-link' %> |
 				<% else %>
 					<%= link_to " Mis Solicitudes", solicituds_path, :class => 'navbar-link' %> |
 				<% end %>
