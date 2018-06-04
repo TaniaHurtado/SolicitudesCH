@@ -37,7 +37,7 @@
                 <td colspan="1"><%= solicitud.importancia %></td>
                 <td colspan="1"><%= solicitud.estado %></td>
                 <td colspan="1"><%= solicitud.materiales %></td>
-                <td colspan="1"><%= solicitud.fecha %></td>
+                <td colspan="1"><%= solicitud.fecha.strftime("%m/%d/%Y") %></td>
                 <td colspan="1"><%= solicitud.lugar %></td>
                 <td colspan="1"><%= solicitud.nombre_responsable %> <%= solicitud.nombre_responsable2 %></td>
                 <td colspan="3" style="padding-bottom: 20px;">

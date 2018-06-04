@@ -8,7 +8,7 @@
 
       <h1 style="text-align: center">Mis Informes</h1>
       <div class="links">
-          <%= link_to 'Nuevo Informe', new_informe_path,  :class => 'navbar-link' %> | 
+          <%= link_to 'Nuevo Informe', new_informe_path,  :class => 'navbar-link' %>  
           <%= link_to "Regresar", welcome_index_path  %>
     </div>
     <div class="div-table">
@@ -29,7 +29,7 @@
         <td colspan="3" style="padding-bottom: 20px;">
         <div class="actions boton"><%= link_to 'Ver', informe %></div>
         <div class="actions boton"><%= link_to 'Editar', edit_informe_path(informe) %></div>
-        <div class="actions boton"><%= link_to 'Eliminar', informe, method: :delete, data: { confirm: 'Estas seguro?' } %>
+        <div class="actions boton"><%= link_to 'Eliminar', informe, method: :delete, data: { confirm: '¿Estás seguro que deseas eliminar el informe?' } %>
         </div>
         </td>
       </tr>

@@ -7,17 +7,26 @@
 
       <h1 style="text-align: center">Solicitudes</h1>
 						<div class="links">
-					<%= link_to "Salir", destroy_user_session_path , method: :delete, :class => 'navbar-link' %>|
+					<%= link_to "Salir", destroy_user_session_path , method: :delete, :class => 'navbar-link' %>
 					<%= link_to "Regresar", welcome_index_path  %>
 				</div>
+
+			<div>
+			Filtros: 
+					<%= form_tag admin_solicituds_path, method: 'get' do %>
+						<%= select_tag :estado, options_for_select(["Todas", "Aceptada", "Realizada", "Generada", "Asignada", "Realizada", "Evaluada"], params[:estado]) %>
+					<!--	<%= select_tag :importancia, options_for_select(["Todas", "Urgente", "Programable"], params[:importancia]) %>-->
+						<%= submit_tag 'Filter' %>
+					<% end %>
+			</div>
       <div style="overflow-x:auto;">
 			<table style="width:100%" class="sol_table">
 		        <thead>
 		          <tr>
 		            <th colspan="1">Solicitante</th>
-		            <th colspan="1">Descripcion</th>
+		            <th colspan="1">Descripción</th>
 		            <th colspan="1">Tipo</th>
-		            <th colspan="1">Importancia</th>
+		            <th colspan="1">Importancía</th>
 		            <th colspan="1">Estado</th>
 		            <th colspan="1">Materiales</th>
 		            <th colspan="1">Fecha</th>
@@ -27,7 +36,9 @@
 		        </thead>
 
 		        <tbody>
-		          <% @solicituds.each do |solicitud| %>
+							<% (@solicituds
+							.solicitudes_por_estado(sanitize(params[:estado]))
+							).each do |solicitud| %>
 		            <tr class="sol_table">
 		              <td colspan="1"> <% @user = User.find(solicitud.user)   %>
 		                    <%= @user.nombre %> <%= @user.apellido %> </td>
@@ -36,7 +47,7 @@
 		              <td colspan="1"><%= solicitud.importancia %></td>
 		              <td colspan="1"><%= solicitud.estado %></td>
 		              <td colspan="1"><%= solicitud.materiales %></td>
-		              <td colspan="1"><%= solicitud.fecha %></td>
+		              <td colspan="1"><%= solicitud.fecha.strftime("%d/%m/%Y") %></td>
 		              <td colspan="1"><%= solicitud.lugar %></td>
 		              <td colspan="1"><%= solicitud.nombre_responsable %> <%= solicitud.nombre_responsable2 %></td>
 		              <td colspan="3" style="padding-bottom: 15px;">
