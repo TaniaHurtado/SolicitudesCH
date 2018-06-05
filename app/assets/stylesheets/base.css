@@ -142,3 +142,21 @@ tr:nth-child(even) {background-color: #bebebe;}
 .maxWidth{
     width: 100%;
 }
+
+.inline{
+    display: inline-block;
+}
+
+.field {
+    margin: 10px 10px;
+}
+
+.label_tag{
+    margin: 0px 10px!important;
+}
+
+.custom-btn-ubication{
+    display: block;
+    float: none!important;
+    margin: 15px auto;
+}

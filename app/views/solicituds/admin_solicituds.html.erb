@@ -12,16 +12,32 @@
 				</div>
 
 			<div>
-			Filtros: 
 					<%= form_tag admin_solicituds_path, method: 'get' do %>
+					<div class="field inline">
+						<%= label_tag 'Estado', nil, class:"label_tag" %>
 						<%= select_tag :estado, options_for_select(@solicituds.uniq.pluck(:estado), params[:estado]),  {:include_blank => 'Todas'} %>
+						</div>
+						<div class="field inline">
+							<%= label_tag 'Importancia', nil, class:"label_tag"  %>
 						<%= select_tag :importancia, options_for_select(@solicituds.where("importancia IS NOT NULL").uniq.pluck(:importancia), params[:importancia]), {:include_blank => 'Todas'} %>
+						</div>
+						<div class="field inline">
+							<%= label_tag 'Solicitante', nil, class:"label_tag" %>
 						<%= select_tag :solicitante, options_for_select(
 							User.where(id: @solicituds.uniq.pluck(:user_id)).collect { |u| [ u.nombre + " " + u.apellido, u.id ] }, 
 							params[:solicitante]), {:include_blank => 'Todas'} %>
-						<%= select_tag :responsable, options_for_select(@solicituds.uniq.pluck(:nombre_responsable), params[:responsable]), {:include_blank => 'Todos'} %>
+							</div>
+							<div class="field inline">
+								<%= label_tag 'Responsable', nil, class:"label_tag"	 %>
+						<%= select_tag :responsable, options_for_select(@solicituds.uniq.pluck(:nombre_responsable, :nombre_responsable2), params[:responsable]), {:include_blank => 'Todos'} %>
+						</div>
+						<div class="field inline">
+							<%= label_tag 'Lugar', nil, class:"label_tag" %>
 						<%= select_tag :lugar, options_for_select(@solicituds.uniq.pluck(:lugar), params[:lugar]),  {:include_blank => 'Todos'} %>
-						<%= submit_tag 'Filter' %>
+						</div>
+						<div class="actions">
+							<%= submit_tag 'Filtrar', class:"custom-btn-ubication" %>
+						</div>
 					<% end %>
 			</div>
       <div style="overflow-x:auto;">
