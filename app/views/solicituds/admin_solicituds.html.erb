@@ -14,8 +14,13 @@
 			<div>
 			Filtros: 
 					<%= form_tag admin_solicituds_path, method: 'get' do %>
-						<%= select_tag :estado, options_for_select(["Todas", "Aceptada", "Realizada", "Generada", "Asignada", "Realizada", "Evaluada"], params[:estado]) %>
-					<!--	<%= select_tag :importancia, options_for_select(["Todas", "Urgente", "Programable"], params[:importancia]) %>-->
+						<%= select_tag :estado, options_for_select(@solicituds.uniq.pluck(:estado), params[:estado]),  {:include_blank => 'Todas'} %>
+						<%= select_tag :importancia, options_for_select(@solicituds.where("importancia IS NOT NULL").uniq.pluck(:importancia), params[:importancia]), {:include_blank => 'Todas'} %>
+						<%= select_tag :solicitante, options_for_select(
+							User.where(id: @solicituds.uniq.pluck(:user_id)).collect { |u| [ u.nombre + " " + u.apellido, u.id ] }, 
+							params[:solicitante]), {:include_blank => 'Todas'} %>
+						<%= select_tag :responsable, options_for_select(@solicituds.uniq.pluck(:nombre_responsable), params[:responsable]), {:include_blank => 'Todos'} %>
+						<%= select_tag :lugar, options_for_select(@solicituds.uniq.pluck(:lugar), params[:lugar]),  {:include_blank => 'Todos'} %>
 						<%= submit_tag 'Filter' %>
 					<% end %>
 			</div>
@@ -36,8 +41,13 @@
 		        </thead>
 
 		        <tbody>
-							<% (@solicituds
-							.solicitudes_por_estado(sanitize(params[:estado]))
+							<% (@solicituds	
+							.solicitudes_filtro(
+								sanitize(params[:estado]),
+								sanitize(params[:importancia]),
+								sanitize(params[:solicitante]),
+								sanitize(params[:responsable]),
+								sanitize(params[:lugar]))
 							).each do |solicitud| %>
 		            <tr class="sol_table">
 		              <td colspan="1"> <% @user = User.find(solicitud.user)   %>
