@@ -1,5 +1,5 @@
 <main class="detalle">
-			<div class="breadcrumb-class">Está en:<a href="index.html" target="_self" title="Inicio">Ciencias Humanas</a><span> > Solicitudes </span></div>
+			<div class="breadcrumb-class">Está en: Ciencias Humanas ><span>  Solicitudes </span></div>
 						<h1 style="text-align: center;"> SISTEMA DE SOLICITUDES </h1>
 			<h2 style="text-align: center;"> FACULTAD CIENCIAS HUMANAS </h2>
   
@@ -37,7 +37,7 @@
                 <td colspan="1"><%= solicitud.importancia %></td>
                 <td colspan="1"><%= solicitud.estado %></td>
                 <td colspan="1"><%= solicitud.materiales %></td>
-                <td colspan="1"><%= solicitud.fecha %></td>
+                <td colspan="1"><%= solicitud.fecha.strftime("%m/%d/%Y") %></td>
                 <td colspan="1"><%= solicitud.lugar %></td>
                 <td colspan="1"><%= solicitud.nombre_responsable %> <%= solicitud.nombre_responsable2 %></td>
                 <td colspan="3" style="padding-bottom: 20px;">

@@ -1,16 +1,28 @@
-<h2>Forgot your password?</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= devise_error_messages! %>
+<main class="detalle">
+<div class="breadcrumb-class">Está en: Ciencias Humanas ><span>Solicitudes > Usuarios > ¿Olvidaste tu contraseña? </span></div>
+						<h1 style="text-align: center;"> SISTEMA DE SOLICITUDES </h1>
+			<h2 style="text-align: center;"> FACULTAD CIENCIAS HUMANAS </h2>
+  
+			<p id="notice"><%= notice %></p>
+    <div class="links">
+    <%= render "devise/shared/links" %>
+    </div>
+    <div class="register-content">
+    <h2>¿Olvidaste tu contraseña?</h2>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= devise_error_messages! %>
 
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
+    <div class="field">
+      <%= f.label :Correo %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <div class="actions">
+      <%= f.submit "Enviar instrucciones para cambiar la contraseña" %>
+    </div>
+    <% end %>
+    </div>
+  
+</main>
