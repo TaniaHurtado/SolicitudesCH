@@ -7,7 +7,7 @@
     padding: 20px;
     color: white;
     height: auto;
-
+    font-size: 1.3rem;
 }
 
 .field{
@@ -94,7 +94,7 @@ tr:nth-child(even) {background-color: #bebebe;}
 }
 
 .register-content .title{
-    font-size: 16px;
+    font-size: 1.4rem;
 }
 
 /* width */
@@ -141,4 +141,41 @@ tr:nth-child(even) {background-color: #bebebe;}
 
 .maxWidth{
     width: 100%;
+}
+
+.inline{
+    display: inline-block;
+}
+
+.field {
+    margin: 10px 10px;
+}
+
+.label_tag{
+    margin: 0px 10px!important;
+}
+
+.custom-btn-ubication{
+    display: block;
+    float: none!important;
+    margin: 15px auto;
+}
+
+.custom-alert{
+    background-image: none;
+    border-color: transparent;
+    color: #fff;
+    max-width: 50%;
+    margin: auto;
+    height: auto;
+    margin-top: 2%;
+    font-size: 1.6rem;
+}
+
+.custom-alert-notice{
+    background-color: rgb(128,66,49);
+}
+
+.custom-alert-success{
+    background-color: rgb(148,180,59);
 }

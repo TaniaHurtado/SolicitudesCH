@@ -1,12 +1,18 @@
 <main class="detalle">
-<div class="breadcrumb-class">Está en:<a href="index.html" target="_self" title="Inicio">Ciencias Humanas</a><span> > Solicitudes > Usuarios > Editar </span></div>
+<div class="breadcrumb-class">Está en: Ciencias Humanas <span> > Solicitudes > Usuarios > Editar </span></div>
 						<h1 style="text-align: center;"> SISTEMA DE SOLICITUDES </h1>
 			<h2 style="text-align: center;"> FACULTAD CIENCIAS HUMANAS </h2>
+<<<<<<< HEAD
 <div class="register-content">
   <h2 class="register-label">Actualizar Información<%= resource_name.to_s.humanize %></h2>
+=======
+>>>>>>> 792ca8a2d1129d4f4e30685324971fcc47679cb5
 <div class="links">
   <%= link_to "Regresar", :back %>
 </div>
+<div class="register-content">
+  <h2 class="register-label">Editar <%= resource_name.to_s.humanize %></h2>
+
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
     <%= devise_error_messages! %>
 

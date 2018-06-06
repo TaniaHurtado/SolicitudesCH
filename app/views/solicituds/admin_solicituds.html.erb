@@ -1,5 +1,5 @@
 <main class="detalle">
-			<div class="breadcrumb-class">Está en:<a href="index.html" target="_self" title="Inicio">Ciencias Humanas</a><span>Solicitudes </span></div>
+			<div class="breadcrumb-class">Está en: Ciencias Humanas ><span>Solicitudes </span></div>
 						<h1 style="text-align: center;"> SISTEMA DE SOLICITUDES </h1>
 			<h2 style="text-align: center;"> FACULTAD CIENCIAS HUMANAS </h2>
   
@@ -7,18 +7,49 @@
 
       <h1 style="text-align: center">Solicitudes</h1>
 						<div class="links">
+
 					<%= link_to "Salir", destroy_user_session_path , method: :delete, :class => 'navbar-link' %>|
 					<%= link_to "Regresar", welcome_index_path  %> |
 					
 				</div>
+
+			<div>
+					<%= form_tag admin_solicituds_path, method: 'get' do %>
+					<div class="field inline">
+						<%= label_tag 'Estado', nil, class:"label_tag" %>
+						<%= select_tag :estado, options_for_select(@solicituds.uniq.pluck(:estado), params[:estado]),  {:include_blank => 'Todas'} %>
+						</div>
+						<div class="field inline">
+							<%= label_tag 'Importancia', nil, class:"label_tag"  %>
+						<%= select_tag :importancia, options_for_select(@solicituds.where("importancia IS NOT NULL").uniq.pluck(:importancia), params[:importancia]), {:include_blank => 'Todas'} %>
+						</div>
+						<div class="field inline">
+							<%= label_tag 'Solicitante', nil, class:"label_tag" %>
+						<%= select_tag :solicitante, options_for_select(
+							User.where(id: @solicituds.uniq.pluck(:user_id)).collect { |u| [ u.nombre + " " + u.apellido, u.id ] }, 
+							params[:solicitante]), {:include_blank => 'Todas'} %>
+							</div>
+							<div class="field inline">
+								<%= label_tag 'Responsable', nil, class:"label_tag"	 %>
+						<%= select_tag :responsable, options_for_select(@solicituds.uniq.pluck(:nombre_responsable, :nombre_responsable2), params[:responsable]), {:include_blank => 'Todos'} %>
+						</div>
+						<div class="field inline">
+							<%= label_tag 'Lugar', nil, class:"label_tag" %>
+						<%= select_tag :lugar, options_for_select(@solicituds.uniq.pluck(:lugar), params[:lugar]),  {:include_blank => 'Todos'} %>
+						</div>
+						<div class="actions">
+							<%= submit_tag 'Filtrar', class:"custom-btn-ubication" %>
+						</div>
+					<% end %>
+			</div>
       <div style="overflow-x:auto;">
 			<table style="width:100%" class="sol_table">
 		        <thead>
 		          <tr>
 		            <th colspan="1">Solicitante</th>
-		            <th colspan="1">Descripcion</th>
+		            <th colspan="1">Descripción</th>
 		            <th colspan="1">Tipo</th>
-		            <th colspan="1">Importancia</th>
+		            <th colspan="1">Importancía</th>
 		            <th colspan="1">Estado</th>
 		            <th colspan="1">Materiales</th>
 		            <th colspan="1">Fecha</th>
@@ -28,7 +59,14 @@
 		        </thead>
 
 		        <tbody>
-		          <% @solicituds.each do |solicitud| %>
+							<% (@solicituds	
+							.solicitudes_filtro(
+								sanitize(params[:estado]),
+								sanitize(params[:importancia]),
+								sanitize(params[:solicitante]),
+								sanitize(params[:responsable]),
+								sanitize(params[:lugar]))
+							).each do |solicitud| %>
 		            <tr class="sol_table">
 		              <td colspan="1"> <% @user = User.find(solicitud.user)   %>
 		                    <%= @user.nombre %> <%= @user.apellido %> </td>
@@ -37,7 +75,7 @@
 		              <td colspan="1"><%= solicitud.importancia %></td>
 		              <td colspan="1"><%= solicitud.estado %></td>
 		              <td colspan="1"><%= solicitud.materiales %></td>
-		              <td colspan="1"><%= solicitud.fecha %></td>
+		              <td colspan="1"><%= solicitud.fecha.strftime("%d/%m/%Y") %></td>
 		              <td colspan="1"><%= solicitud.lugar %></td>
 		              <td colspan="1"><%= solicitud.nombre_responsable %> <%= solicitud.nombre_responsable2 %></td>
 		              <td colspan="3" style="padding-bottom: 15px;">

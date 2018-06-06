@@ -65,7 +65,7 @@
 
 					<!--<![endif]-->
 					<!--[if lt IE 9]>
-			<!--<%= image_tag("favicon.ico", alt: "icono") %> src="images/escudoUnal.png" width="93%" height="auto" class=""/> 
+			<%= image_tag("favicon.ico", alt: "icono") %> src="images/escudoUnal.png" width="93%" height="auto" class=""/> 
 	  <![endif]-->
 					<!--<%= image_tag("escudoUnal.svg", class: "hidden-print", size:"93%xauto") %>-->
             </a>
@@ -148,16 +148,15 @@
 			</div>
 
 		</header>
+			<% if notice %>
+				<p class="alert alert-success custom-alert custom-alert-success"><%= notice %></p>
+			<% end %>
+			<% if alert %>
+				<p class="alert alert-danger custom-alert custom-alert-notice"><%= alert %></p>
+			<% end %>
 
+    		<%= yield %>
 		
-  	<% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
-<% end %>
-<% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
-<% end %>
-    <%= yield %>
-
 		<footer class="clear">
 			<nav class="col-md-3 col-lg-3 col-sm-3 col-xs-4 col-xxs-6 gobiernoLinea">
             <a href="http://www.legal.unal.edu.co" target="_top">Régimen Legal</a>

@@ -1,15 +1,32 @@
 class SolicitudsController < ApplicationController
   before_action :set_solicitud, only: [:show, :edit, :update, :destroy]
-
+  
   #Estados de solicitud:
   #Generada
   #Asignada
   #Aceptada
   #Realizada
   #Evaluada
-
   # GET /solicituds
-  # GET /solicituds.json
+
+  # GET /solicituds.json  
+  def index 
+    @solicituds = Solicitud.where(user_id: current_user.id)
+    #@evaluacion = Evaluacion.where(solicitud_id: @solicituds.id)
+  end
+  # GET /solicituds/1
+  # GET /solicituds/1.json
+  def show
+  end
+  # GET /solicituds/new
+  def new
+    @solicitud = Solicitud.new
+  end
+  def place   
+  end
+  # GET /solicituds/1/edit
+  def edit
+  end
   
   #Enviar solicitud
   def send_solicitud_mail
@@ -166,5 +183,9 @@ class SolicitudsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def solicitud_params
       params.require(:solicitud).permit(:descripcion, :tipo, :importancia, :estado, :materiales, :fecha, :correo_responsable, :nombre_responsable, :lugar, :user_id, :ubicacion_id)
+    end
+
+    def filter_by_state
+      print "Algo?"
     end
 end
