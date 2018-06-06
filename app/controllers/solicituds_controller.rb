@@ -10,23 +10,7 @@ class SolicitudsController < ApplicationController
 
   # GET /solicituds
   # GET /solicituds.json
-  def index 
-    @solicituds = Solicitud.where(user_id: current_user.id)
-    #@evaluacion = Evaluacion.where(solicitud_id: @solicituds.id)
-  end
-  # GET /solicituds/1
-  # GET /solicituds/1.json
-  def show
-  end
-  # GET /solicituds/new
-  def new
-    @solicitud = Solicitud.new
-  end
-  def place   
-  end
-  # GET /solicituds/1/edit
-  def edit
-  end
+  
   #Enviar solicitud
   def send_solicitud_mail
     @solicitud=Solicitud.find(params[:id])
@@ -43,7 +27,15 @@ class SolicitudsController < ApplicationController
       @solicituds=Solicitud.all
   end
 
+  #def order_date_solicituds
+  #  @solictuds = Solicitud.order(:fecha)
+  #end
 
+  #def order_state_solicituds
+  #  @solictuds = Solicitud.order(:estado)
+  #end
+
+  
   def responsable_solicituds   
    #if current_user.rol == 0
       @solicituds=Solicitud.where(correo_responsable: current_user.email)
@@ -85,6 +77,24 @@ class SolicitudsController < ApplicationController
     @solicituds=Solicitud.where("user_id = ? AND estado = ?", current_user.id, "Evaluada")
   end
 
+
+  def index 
+    @solicituds = Solicitud.where(user_id: current_user.id)
+    #@evaluacion = Evaluacion.where(solicitud_id: @solicituds.id)
+  end
+  # GET /solicituds/1
+  # GET /solicituds/1.json
+  def show
+  end
+  # GET /solicituds/new
+  def new
+    @solicitud = Solicitud.new
+  end
+  def place   
+  end
+  # GET /solicituds/1/edit
+  def edit
+  end
   # POST /solicituds
   # POST /solicituds.json
   def create
@@ -93,12 +103,6 @@ class SolicitudsController < ApplicationController
     #.pluck(:id) devuelve un arreglo con los ids
     @lugares = Ubicacion.where(lugar: params[:solicitud][:lugar]).pluck(:id)
    
-    @lugares.each do |e|
-
-      print e
-    end
-    print @lugares
-
     @lugar1 = Ubicacion.find(@lugares[0])
     @responsable1 = User.find(@lugar1.user_id)
     #@solicitud = Solicitud.new(descripcion: params[:solicitud][:descripcion], tipo: params[:solicitud][:tipo], importancia: params[:solicitud][:importancia], estado: 'Generada', materiales: params[:solicitud][:materiales], fecha: params[:solicitud][:fecha], correo_responsable: "mauricio", nombre_responsable: "Mauricio", lugar: params[:solicitud][:lugar], user_id: current_user.id)

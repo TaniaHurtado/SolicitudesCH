@@ -1,4 +1,4 @@
-class UserController < ApplicationController
+class UsersController < ApplicationController
 	before_action :authenticate_user!
 	after_action :verify_authorized
 
@@ -16,6 +16,7 @@ class UserController < ApplicationController
 
 
 
+
 	def create
 	end
 
@@ -26,7 +27,7 @@ class UserController < ApplicationController
 	def index
 		#redirect_to not_authorized_path if !current_user.try(:Admin?)
 		@users=User.all
-		#authorize @users
+		authorize @users
 	end
 
 	def show

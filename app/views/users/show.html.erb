@@ -1,0 +1,57 @@
+<main class="detalle">
+			<div class="breadcrumb-class">Está en:<a href="index.html" target="_self" title="Inicio">Ciencias Humanas</a><span> > Solicitudes > Detalle Solicitud </span></div>
+						<h1 style="text-align: center;"> SISTEMA DE SOLICITUDES </h1>
+            <p class="field" id="notice"><%= notice %></p>
+            <div class="links">
+            <%= link_to 'Editar', edit_solicitud_path(@solicitud) %> |
+            <%= link_to 'Regresar', solicituds_path %>
+          </div>
+        <div class="register-content">
+          <p class="field" class="field">
+            <strong class="title">Descripción:</strong>
+            <%= @solicitud.descripcion %>
+          </p>
+
+          <p class="field">
+            <strong class="title">Tipo:</strong>
+            <%= @solicitud.tipo %>
+          </p>
+
+          <p class="field">
+            <strong class="title">Importancía:</strong>
+            <%= @solicitud.importancia %>
+          </p>
+
+          <p class="field">
+            <strong class="title">Estado:</strong>
+            <%= @solicitud.estado %>
+          </p>
+
+          <p class="field">
+            <strong class="title">Materiales:</strong>
+            <%= @solicitud.materiales %>
+          </p>
+
+          <p class="field">
+            <strong class="title">Fecha:</strong>
+            <%= @solicitud.fecha %>
+          </p>
+
+          <p class="field">
+            <strong class="title">Lugar:</strong>
+            <%= @solicitud.lugar %>
+          </p>
+
+          <p class="field">
+            <strong class="title">User:</strong>
+            <% @user = User.find(@solicitud.user_id)   %>
+            <%= @user.email  %>
+          </p>
+          <p class="field">
+            <strong class="title">Responsable:</strong>
+            <%= @solicitud.nombre_responsable %>
+          </p>
+          </div>
+          
+</main>
+          
