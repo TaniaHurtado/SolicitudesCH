@@ -1,0 +1,31 @@
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+  highlight_cell = style.add_style(bg_color: "EFC376",
+                                    border: Axlsx::STYLE_THIN_BORDER,
+                                    alignment: { horizontal: :center })
+
+wb.add_worksheet(name: "Usuarios") do |sheet|
+  # this is the head row of your spreadsheet
+  sheet.add_row ["Nombre", 
+                "Apellido", 
+                "Correo", 
+                "Dependencia", 
+                "Cargo", 
+                "Rol"
+                ], 
+                style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell]
+
+
+  # each user is a row on your spreadsheet
+  @users.each do |user|
+    sheet.add_row [   user.nombre,
+                      user.apellido, 
+                      user.email,
+                      user.dependencia,
+                      user.cargo,
+                      user.rol
+                      ]
+    end
+  end
+end
