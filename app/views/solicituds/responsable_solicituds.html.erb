@@ -7,6 +7,7 @@
 
       <h1 style="text-align: center">Mis Solicitudes</h1>
 				<div class="links">
+				<%= link_to "Exportar Datos - Excel", responsable_solicituds_path(format: "xlsx") %>
 					<%= link_to "Salir", destroy_user_session_path , method: :delete, :class => 'navbar-link' %>
 					<%= link_to "Regresar", welcome_index_path  %>
 				</div>
