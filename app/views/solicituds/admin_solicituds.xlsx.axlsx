@@ -8,6 +8,7 @@ wb.styles do |style|
 wb.add_worksheet(name: "Solicitudes") do |sheet|
   # this is the head row of your spreadsheet
   sheet.add_row ["Solicitante", 
+                "Dependencia",
                 "Descripcion", 
                 "Tipo", 
                 "Importancia", 
@@ -18,12 +19,13 @@ wb.add_worksheet(name: "Solicitudes") do |sheet|
                 "Responsable1", 
                 "Responsable2"
                 ], 
-                style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell]
+                style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell]
 
 
   # each user is a row on your spreadsheet
   @solicituds.each do |solicitud|
     sheet.add_row [   User.find(solicitud.user).email,
+                      User.find(solicitud.user).dependencia,
                       solicitud.descripcion, 
                       solicitud.tipo,
                       solicitud.importancia,
