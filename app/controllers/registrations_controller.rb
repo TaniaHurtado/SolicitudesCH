@@ -17,3 +17,4 @@ def account_update_params
       welcome_index_path
     end
 end
+

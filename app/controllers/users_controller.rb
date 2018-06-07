@@ -1,13 +1,13 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!
 	after_action :verify_authorized
-	before_action :set_user, only: [:show, :edit, :update]
+	#before_action :set_user, only: [:show, :edit, :update]
 	def finish_signup
 		if request.patch? && params[:user] # Revisa si el request es de tipo patch, es decir, llenaron el formulario y lo ingresaron
 			@user = User.find(params[:id])
 			if @user.update(user_params)
 				sign_in(@user, :bypass => true)
-				redirect_to solicituds_path
+				redirect_to welcome_index_path
 			else
 				@show_errors = true
 			end
@@ -53,17 +53,28 @@ class UsersController < ApplicationController
 	end
 
 	def update		
-	  @user = User.find(params[:id])
-	  print "**************************"
-	  @user.rol = params[:user][:rol].gsub(/\D/, '').to_i
-	  @user.save
-	  print @user.rol
-      if @user.update(user_params)
-         redirect_to users_path, notice: 'Información actualizada' 
+	  #@user = User.find(params[:id])
+	  #print "**************************"
+	  #@user.rol = params[:user][:rol].gsub(/\D/, '').to_i
+	  #@user.save
+	  #print @user.rol
+      
+      #if @user.update(user_params)
+      #   redirect_to users_path, notice: 'Información actualizada' 
         
+      #else
+       #render 'edit' 
+      #end
+       respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.json { render :show, status: :ok, location: @user }
       else
-       render 'edit' 
+        format.html { render :edit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
+    end
+
       authorize @user
     end
 

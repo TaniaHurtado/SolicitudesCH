@@ -1,6 +1,6 @@
 
-us1 = User.create(email:"machaves@unal.edu.co", password: "machaves", nombre:"Mauricio",apellido: "Chaves", telefono: "3123467895", dependencia: "Ciencias Humanas", cargo: "Responsable", rol: 0)
-us2 = User.create(email:"guiramirez@unal.edu.co", password: "guiramirez", nombre:"Guillermo",apellido: "Ramirez", telefono: "3154567890", dependencia: "Ciencias Humanas", cargo: "Responsable", rol: 0)
+#us1 = User.create(email:"machaves@unal.edu.co", password: "machaves", nombre:"Mauricio",apellido: "Chaves", telefono: "3123467895", dependencia: "Ciencias Humanas", cargo: "Responsable", rol: 0)
+#us2 = User.create(email:"guiramirez@unal.edu.co", password: "guiramirez", nombre:"Guillermo",apellido: "Ramirez", telefono: "3154567890", dependencia: "Ciencias Humanas", cargo: "Responsable", rol: 0)
 
 
 

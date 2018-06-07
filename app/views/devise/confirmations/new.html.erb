@@ -1,5 +1,5 @@
 <main class="detalle">
-<h2>Resend confirmation instructions</h2>
+<h2>Reenviar instrucciones de confirmación</h2>
 <div class="links">
 <%= render "devise/shared/links" %>
 </div>
@@ -7,12 +7,12 @@
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <%= f.label :correo %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
+    <%= f.submit "Reenviar Instrucciones de confirmación" %>
   </div>
 <% end %>
 
