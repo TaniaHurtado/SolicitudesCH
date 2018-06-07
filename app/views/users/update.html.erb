@@ -1,18 +1,18 @@
 <main class="detalle">
 <div class="breadcrumb-class">Está en: Ciencias Humanas <span> > Solicitudes > Usuarios > Editar </span></div>
-						<h1 style="text-align: center;"> SISTEMA DE SOLICITUDES </h1>
-			<h2 style="text-align: center;"> FACULTAD CIENCIAS HUMANAS </h2>
+            <h1 style="text-align: center;"> SISTEMA DE SOLICITUDES </h1>
+      <h2 style="text-align: center;"> FACULTAD CIENCIAS HUMANAS </h2>
       
-<div class="register-content">
-  <h2 class="register-label">Actualizar Información<%= resource_name.to_s.humanize %></h2>
-<div class="links">
+
+  <div class="links">
   <%= link_to "Regresar", :back %>
 </div>
 <div class="register-content">
-  <h2 class="register-label">Editar <%= resource_name.to_s.humanize %></h2>
 
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-    <%= devise_error_messages! %>
+  <h2 class="register-label">Editar Información de Usuarios </h2>
+
+  <%= form_for :user, url: user_path(@user), method: :patch  do |f| %>
+    
 
     <div class="field">
       <%= f.label :Nombre %><br />
@@ -39,27 +39,18 @@
       <%= f.text_field :cargo, autofocus: true %>
     </div>
 
-     <% if policy(current_user).admin? %>
+     
       <div class="field">
       <%= f.label :Rol %><br />
       <%= f.text_field :rol, autofocus: true %>
     </div>
-    <% end %>    
+       
 
-  <div class="field">
-    <%= f.label :Correo %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-   
     <div class="actions">
       <%= f.submit "Actualizar" %>
     </div>
   <% end %>
 
-  <h3>Cancelar mi cuenta</h3>
-
-  <p>¿Quieres cancelar tu cuenta? <%= button_to "Cancelar mi cuenta", registration_path(resource_name), data: { confirm: "¿Estas seguro?" }, method: :delete %></p>
 </div>
 
 </main>

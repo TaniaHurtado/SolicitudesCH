@@ -2,6 +2,12 @@ class UserPolicy < ApplicationPolicy
   def index?
   	user.Admin?
   end
+  def edit?
+    user.Admin?
+  end
+  def update?
+    user.Admin?
+  end
   def admin?
     user.Admin?
   end

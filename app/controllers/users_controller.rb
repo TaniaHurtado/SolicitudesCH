@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!
 	after_action :verify_authorized
-
+	before_action :set_user, only: [:show, :edit, :update]
 	def finish_signup
 		if request.patch? && params[:user] # Revisa si el request es de tipo patch, es decir, llenaron el formulario y lo ingresaron
 			@user = User.find(params[:id])
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
 	def index
 		#redirect_to not_authorized_path if !current_user.try(:Admin?)
-		@users=User.all
+		@users = User.where.not(:id => current_user.id)
 		authorize @users
 	end
 
@@ -45,28 +45,50 @@ class UsersController < ApplicationController
 
 	def destroyUser
 		@user = User.find(params[:id])
-		@user.destroy
-		#redirect_to users_path, notice: 'Usuario eliminado correctamente.'
+    if @user.destroy
+      flash[:notice] = "Usuario eliminado correctamente"
+      redirect_to users_path
+    end
+		authorize @user
 	end
 
-	def update
-		puts user_params
+	def update		
+	  @user = User.find(params[:id])
+	  print "**************************"
+	  @user.rol = params[:user][:rol].gsub(/\D/, '').to_i
+	  @user.save
+	  print @user.rol
+      if @user.update(user_params)
+         redirect_to users_path, notice: 'Información actualizada' 
+        
+      else
+       render 'edit' 
+      end
+      authorize @user
+    end
+
+
+	def edit	
+	#if policy(current_user).admin?	
 		@user = User.find(params[:id])
-		if @user.update(user_params)
-			redirect_to profile_path
-		else
-			render 'edit'
-		end
-	end
-	def edit
-		@user = User.find(params[:id])
+		print @user.nombre
+		
+		
+		authorize @user
+	#end
 	end
 
 
 	private
+    # Use callbacks to share common setup or constraints between actions.
+    def set_user
+      @user = User.find(params[:id])
+    end
+
+	private
 	def user_params
-	    accessible = [ :id, :nombre, :email, :cargo, :dependencia, :rol] # extend with your own params
-	    accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
-	    params.require(:user).permit(accessible)
+	    #accessible = [ :id, :nombre, :email, :cargo, :dependencia, :rol] # extend with your own params
+	    #accessible << [ :password, :password_confirmation ] unless params[:user][:password].blank?
+	    params.require(:user).permit(:id, :nombre, :apellido, :telefono, :email, :cargo, :dependencia,  params[:user][:rol].to_i)
 	  end
 end

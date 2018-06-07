@@ -4,7 +4,7 @@ def account_update_params
   end
   private
   def account_update_params
-    params.require(:user).permit(:nombre, :apellido,:telefono, :email, :rol, :cargo, :dependencia )
+    params.require(:user).permit(:nombre, :apellido, :telefono, :email, :rol, :cargo, :dependencia )
   end
 
 

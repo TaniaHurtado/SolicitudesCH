@@ -27,15 +27,16 @@ scope 'Responsable' do
 end
  
 #match '/users/account_update_params', to: 'registrations#account_update_params',via: [:put, :get], as: 'update_params' 
-scope 'Admin' do
-  match '/users/:id/account_update_params', to: 'registrations#account_update_params',via: [:put, :get], as: 'update_params_user'
-  resources :users
-  get "admin_solicituds" => "solicituds#admin_solicituds"
-  #get "order_date_solicituds" => "solicituds#order_date_solicituds"
-  #get "order_state_solicituds" => "solicituds#order_state_solicituds"
-end
+
 
   devise_for :users,controllers: { confirmations: 'confirmations',registrations:'registrations'} 
+  scope 'Admin' do
+    match '/users/:id/account_update_params', to: 'registrations#account_update_params',via: [:put, :get], as: 'update_params_user'
+    resources :users, :controller => "users"
+    get "admin_solicituds" => "solicituds#admin_solicituds"
+    #get "order_date_solicituds" => "solicituds#order_date_solicituds"
+    #get "order_state_solicituds" => "solicituds#order_state_solicituds"
+  end
   devise_scope :user do
   	#get "sign_in" => "devise/sessions#new"
     #get "sign_up" => "devise/registrations#new"

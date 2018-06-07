@@ -1,15 +1,57 @@
 <main class="detalle">
-<div class="breadcrumb-class">Está en:<a href="index.html" target="_self" title="Inicio">Ciencias Humanas</a><span> > Solicitudes > Detalle Solicitud </span></div>
-<h1 style="text-align: center;"> SISTEMA DE SOLICITUDES </h1>
-    <div class="links">
-            <%= link_to 'Ver', @solicitud %> |
-            <%= link_to 'Regresar', solicituds_path %>
-        </div>
-        <div class="register-content">
-        <h1>Editar Mi Solicitud</h1>
-        
-        <%= render 'form', solicitud: @solicitud %>
+<div class="breadcrumb-class">Está en: Ciencias Humanas <span> > Solicitudes > Usuarios > Editar </span></div>
+						<h1 style="text-align: center;"> SISTEMA DE SOLICITUDES </h1>
+			<h2 style="text-align: center;"> FACULTAD CIENCIAS HUMANAS </h2>
+      
+
+  <div class="links">
+  <%= link_to "Regresar", welcome_index_path  %>
+</div>
+<div class="register-content">
+
+  <h2 class="register-label">Editar Información de Usuarios </h2>
+
+  <%= form_for :user, url: user_path(@user), method: :patch  do |f| %>
+    
+
+    <div class="field">
+      <%= f.label :Nombre %><br />
+      <%= f.text_field :nombre, autofocus: true %>
     </div>
 
-</main>
+    <div class="field">
+      <%= f.label :Apellido %><br />
+      <%= f.text_field :apellido, autofocus: true %>
+    </div>
 
+    <div class="field">
+      <%= f.label :Teléfono %><br />
+      <%= f.text_field :telefono, autofocus: true %>
+    </div> 
+
+    <div class="field">
+      <%= f.label :Dependencía %><br />
+      <%= f.text_field :dependencia, autofocus: true %>
+    </div>
+
+    <div class="field">
+      <%= f.label :Cargo %><br />
+      <%= f.text_field :cargo, autofocus: true %>
+    </div>
+
+     
+      <div class="field">
+      <%= f.label :Rol %><br />
+      <%= f.number_field :rol, as: :integer,  autofocus: true %>
+    </div>
+       
+
+    <div class="actions">
+      <%= f.submit "Actualizar" %>
+    </div>
+  <% end %>
+
+</div>
+
+</main>
+  
