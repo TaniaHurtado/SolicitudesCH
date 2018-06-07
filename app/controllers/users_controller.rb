@@ -28,6 +28,14 @@ class UsersController < ApplicationController
 		#redirect_to not_authorized_path if !current_user.try(:Admin?)
 		@users = User.where.not(:id => current_user.id)
 		authorize @users
+
+		#Export to XLSX
+		respond_to do |format|
+			format.html
+			format.xlsx{
+			  response.headers['Content-Disposition'] = 'attachment; filename="usuarios.xlsx"'
+			}
+		  end
 	end
 
 	def show

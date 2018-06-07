@@ -12,6 +12,14 @@ class SolicitudsController < ApplicationController
   # GET /solicituds.json  
   def index 
     @solicituds = Solicitud.where(user_id: current_user.id)
+
+     #Export to XLSX
+     respond_to do |format|
+      format.html
+      format.xlsx{
+        response.headers['Content-Disposition'] = 'attachment; filename="solicitudes.xlsx"'
+      }
+    end
     #@evaluacion = Evaluacion.where(solicitud_id: @solicituds.id)
   end
   # GET /solicituds/1
@@ -40,8 +48,15 @@ class SolicitudsController < ApplicationController
   end
 
   def admin_solicituds  
-   
       @solicituds=Solicitud.all
+
+      #Export to XLSX
+      respond_to do |format|
+      format.html
+      format.xlsx{
+        response.headers['Content-Disposition'] = 'attachment; filename="solicitudes.xlsx"'
+      }
+    end
   end
 
   #def order_date_solicituds
@@ -60,6 +75,9 @@ class SolicitudsController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @solicituds }
+      format.xlsx{
+        response.headers['Content-Disposition'] = 'attachment; filename="solicitudes.xlsx"'
+      }
     end
 
   end
@@ -94,11 +112,6 @@ class SolicitudsController < ApplicationController
     @solicituds=Solicitud.where("user_id = ? AND estado = ?", current_user.id, "Evaluada")
   end
 
-
-  def index 
-    @solicituds = Solicitud.where(user_id: current_user.id)
-    #@evaluacion = Evaluacion.where(solicitud_id: @solicituds.id)
-  end
   # GET /solicituds/1
   # GET /solicituds/1.json
   def show

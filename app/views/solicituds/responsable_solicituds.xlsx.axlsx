@@ -1,0 +1,41 @@
+wb = xlsx_package.workbook
+
+wb.styles do |style|
+  highlight_cell = style.add_style(bg_color: "EFC376",
+                                    border: Axlsx::STYLE_THIN_BORDER,
+                                    alignment: { horizontal: :center })
+
+wb.add_worksheet(name: "Solicitudes") do |sheet|
+  # this is the head row of your spreadsheet
+  sheet.add_row ["Solicitante", 
+                  "Dependencia",
+                "Descripcion", 
+                "Tipo", 
+                "Importancia", 
+                "Estado", 
+                "Materiales", 
+                "Fecha", 
+                "Lugar", 
+                "Responsable1", 
+                "Responsable2"
+                ], 
+                style: [highlight_cell, highlight_cell, highlight_cell, highlight_cell, highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell,highlight_cell]
+
+
+  # each user is a row on your spreadsheet
+  @solicituds.each do |solicitud|
+    sheet.add_row [   User.find(solicitud.user).email,
+                      User.find(solicitud.user).dependencia,
+                      solicitud.descripcion, 
+                      solicitud.tipo,
+                      solicitud.importancia,
+                      solicitud.estado,
+                      solicitud.materiales,
+                      solicitud.fecha.strftime("%m/%d/%Y"),
+                      solicitud.lugar,
+                      solicitud.nombre_responsable,
+                      solicitud.nombre_responsable2
+                      ]
+    end
+  end
+end
