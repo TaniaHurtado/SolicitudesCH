@@ -98,6 +98,14 @@ class SolicitudsController < ApplicationController
   def index 
     @solicituds = Solicitud.where(user_id: current_user.id)
     #@evaluacion = Evaluacion.where(solicitud_id: @solicituds.id)
+
+    #Export to XLSX
+    respond_to do |format|
+      format.html
+      format.xlsx{
+        response.headers['Content-Disposition'] = 'attachment; filename="solicitudes.xlsx"'
+      }
+    end
   end
   # GET /solicituds/1
   # GET /solicituds/1.json
