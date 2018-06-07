@@ -61,28 +61,18 @@ class UsersController < ApplicationController
 	end
 
 	def update		
-	  #@user = User.find(params[:id])
-	  #print "**************************"
-	  #@user.rol = params[:user][:rol].gsub(/\D/, '').to_i
-	  #@user.save
-	  #print @user.rol
+	  @user = User.find(params[:id])
+	  print "**************************"
+	  @user.rol = params[:user][:rol].gsub(/\D/, '').to_i
+	  @user.save
+	  print @user.rol
       
-      #if @user.update(user_params)
-      #   redirect_to users_path, notice: 'Información actualizada' 
-        
-      #else
-       #render 'edit' 
-      #end
-       respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+         redirect_to users_path, notice: 'Información actualizada' 
+        
       else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+      	render 'edit' 
       end
-    end
-
       authorize @user
     end
 

@@ -16,7 +16,7 @@ Los usuarios deben ingresar al sistema, (localhosth:3000) humanas.solicitudes.un
 4. El sistema asignará al responsable de acuerdo con la ubicacion de la solicitud realizada.
 5. El responsable accederá a su perfil y podrá visualizar todas las solicitudes que tiene, dará click en el botoón aceptar para indicar que va a realizar la solicitud. Una vez realizado el trabajo, el responsable ingresará nuevamente a su perfil  y marcará la solicitud omo realizada, dando click en realizar.
 6. Una vez la solicitud ha sido realizada, el solicitante podrá evaluar la solictud.
-7. Una vez evluada, todos podrán ver la calificación de dicha solicitud.
+7. Una vez evaluada, todos podrán ver la calificación de dicha solicitud.
 8. El solicitante no podrá realizar mas de 5 solicitudes sin haberlas calificado.
 
 

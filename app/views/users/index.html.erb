@@ -1,5 +1,5 @@
 <main class="detalle">
-			<div class="breadcrumb-class">Está en:<a href="index.html" target="_self" title="Inicio">Ciencias Humanas</a><span> > Solicitudes </span></div>
+			<div class="breadcrumb-class">Está en:<a href="index.html" target="_self" title="Inicio">Ciencias Humanas</a><span> > Uusarios </span></div>
 						<h1 style="text-align: center;"> SISTEMA DE SOLICITUDES </h1>
 			<h2 style="text-align: center;"> FACULTAD CIENCIAS HUMANAS </h2>
   
@@ -15,6 +15,7 @@
         <table style="width:100%" class="sol_table">
           <thead>
             <tr>
+              <th colspan="1">Id</th>
               <th colspan="1">Nombre</th>
               <th colspan="1">Apellido</th>
               <th colspan="1">Correo</th>
@@ -27,6 +28,7 @@
           <tbody>
             <% @users.each do |user| %>
               <tr class="sol_table">
+                <td colspan="1"><%= user.id %></td>
                 <td colspan="1"><%= user.nombre %></td>
                 <td colspan="1"><%= user.apellido %></td>
                 <td colspan="1"><%= user.email %></td>

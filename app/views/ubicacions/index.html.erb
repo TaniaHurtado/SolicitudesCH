@@ -1,15 +1,19 @@
 <main class="detalle">
-  <p id="notice"><%= notice %></p>
+  <div class="breadcrumb-class">Está en:<a href="index.html" target="_self" title="Inicio">Ciencias Humanas</a><span> > Edificios </span></div>
+            <h1 style="text-align: center;"> SISTEMA DE SOLICITUDES </h1>
+      <h2 style="text-align: center;"> FACULTAD CIENCIAS HUMANAS </h2>
+  
+      <p id="notice"><%= notice %></p>
 
-  <h1>Ubicacions</h1>
+      <h1 style="text-align: center">Ubicación de las solicitudes</h1>
     <div class="links">
-    <%= link_to 'New Ubicacion', new_ubicacion_path %>
+    <%= link_to 'Agregar Ubicación', new_ubicacion_path %>
   </div>
   <table>
     <thead>
       <tr>
-        <th>Lugar</th>
-        <th>User</th>
+        <th colspan="1">Lugar</th>
+        <th colspan="1">Responsable</th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -17,11 +21,14 @@
     <tbody>
       <% @ubicacions.each do |ubicacion| %>
         <tr>
-          <td><%= ubicacion.lugar %></td>
-          <td><%= ubicacion.user %></td>
-          <td><%= link_to 'Show', ubicacion %></td>
-          <td><%= link_to 'Edit', edit_ubicacion_path(ubicacion) %></td>
-          <td><%= link_to 'Destroy', ubicacion, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td colspan="1"><%= ubicacion.lugar %></td>
+          <td colspan="1"><% @user = User.find(ubicacion.user) %>
+                      <%= @user.nombre%> <%= @user.apellido %></td>
+          <td colspan="3" style="padding-bottom: 20px;">
+            <div class="actions boton"><%= link_to 'Ver', ubicacion %></div>
+            <div class="actions boton"><%= link_to 'Editar', edit_ubicacion_path(ubicacion) %></div>
+            <div class="actions boton"><%= link_to 'Eliminar', ubicacion, method: :delete, data: { confirm: '¿Estas seguro?' } %></div>
+           </td>
         </tr>
       <% end %>
     </tbody>
