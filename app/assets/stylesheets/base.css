@@ -191,6 +191,7 @@ tr:nth-child(even) {background-color: #bebebe;}
     background-attachment: fixed!important;
     background-position: center!important;
     background-repeat-y: no-repeat!important;
+    background-size: cover;
     position: absolute;
     width: 100%;
     min-height: 35em;
