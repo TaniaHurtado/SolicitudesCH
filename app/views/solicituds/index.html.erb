@@ -7,7 +7,12 @@
 
       <h1 style="text-align: center">Mis Solicitudes</h1>
       <div class="links">
-          <%= link_to 'Crear Solicitud', new_solicitud_path %>
+          <% if @solicituds.where("estado != 'Evaluada'").count < 6  %>  
+            <%= link_to 'Crear Solicitud', new_solicitud_path %>
+          <%else%>
+            <%= link_to 'Crear Solicitud', nil,  
+            data: {confirm: 'No puedes crear solicitudes si aún tienes más de 5 evaluaciones o solicitudes pendientes'} %>
+          <%end%>
           <%= link_to "Exportar Datos - Excel", solicituds_path(format: "xlsx") %>
           <%= link_to "Salir", destroy_user_session_path , method: :delete, :class => 'navbar-link' %>
       </div>

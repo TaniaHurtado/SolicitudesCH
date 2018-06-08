@@ -170,6 +170,8 @@ tr:nth-child(even) {background-color: #bebebe;}
     height: auto;
     margin-top: 2%;
     font-size: 1.6rem;
+    text-align: center;
+    line-height: 2rem;
 }
 
 .custom-alert-notice{

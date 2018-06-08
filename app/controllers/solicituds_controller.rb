@@ -27,9 +27,9 @@ class SolicitudsController < ApplicationController
   def show
   end
   # GET /solicituds/new
-  def new
-    @solicitud = Solicitud.new
-  end
+  #def new
+  #  @solicitud = Solicitud.new
+  #end
   def place   
   end
   # GET /solicituds/1/edit
@@ -118,8 +118,16 @@ class SolicitudsController < ApplicationController
   end
   # GET /solicituds/new
   def new
+    @solicituds_count=Solicitud.where("user_id = ? AND estado != ?", current_user.id, "Evaluada").count;
+    if @solicituds_count < 6
     @solicitud = Solicitud.new
+    else
+      flash[:alert] = 'No puedes crear solicitudes si aún tienes más de 5 evaluaciones o solicitudes pendientes'
+      redirect_to solicituds_path
+      
+    end
   end
+
   def place   
   end
   # GET /solicituds/1/edit
