@@ -1,9 +1,16 @@
 <main class="detalle">
-    <h1>New Ubicacion</h1>
-   <div class="links">
-        <%= link_to 'Back', ubicacions_path %>
-    </div>
-    <%= render 'form', ubicacion: @ubicacion %>
- 
+<div class="breadcrumb-class">Está en: Ciencias Humanas ><span>Solicitudes </span></div>
+			<h1 style="text-align: center;"> SISTEMA DE SOLICITUDES </h1>
+<h2 style="text-align: center;"> FACULTAD CIENCIAS HUMANAS </h2>
+	<div class="links">
+	<%= link_to 'Regresar', ubicacions_path %>
+</div>
+
+<div class="register-content">
+	<h1 class="register-label">Nueva Ubicación</h1>
+	<%= render 'form', ubicacion: @ubicacion %>
+
+	</div>
 </main>
 
+	

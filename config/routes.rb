@@ -13,9 +13,6 @@ Rails.application.routes.draw do
   
   scope 'Solicitante' do
     
-    resources :solicituds do     
-      resources :evaluacions       
-    end
     match '/solicituds/:id/solicitud_evaluada', to: 'evaluacions#solicitud_evaluada',via: [:put, :get], as: 'solicitud_evaluada'
   end
 

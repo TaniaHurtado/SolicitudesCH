@@ -7,7 +7,8 @@
 
       <h1 style="text-align: center">Ubicación de las solicitudes</h1>
     <div class="links">
-    <%= link_to 'Agregar Ubicación', new_ubicacion_path %>
+    <%= link_to 'Agregar Ubicación', new_ubicacion_path %>|
+    <%= link_to "Regresar", welcome_index_path  %>
   </div>
   <table>
     <thead>
@@ -18,12 +19,12 @@
       </tr>
     </thead>
 
+
     <tbody>
       <% @ubicacions.each do |ubicacion| %>
         <tr>
           <td colspan="1"><%= ubicacion.lugar %></td>
-          <td colspan="1"><% @user = User.find(ubicacion.user) %>
-                      <%= @user.nombre%> <%= @user.apellido %></td>
+          <td colspan="1"><%= ubicacion.users.map{|p| p.nombre}.to_sentence %></td>
           <td colspan="3" style="padding-bottom: 20px;">
             <div class="actions boton"><%= link_to 'Ver', ubicacion %></div>
             <div class="actions boton"><%= link_to 'Editar', edit_ubicacion_path(ubicacion) %></div>

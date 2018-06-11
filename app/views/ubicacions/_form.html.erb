@@ -17,10 +17,13 @@
   </div>
 
   <div class="field">
-    <%= f.label :user_id %>
-    <%= f.text_field :user_id %>
+    <%= f.label :responsables %>
+          
   </div>
-
+    <%= f.collection_check_boxes :user_ids, @users.all, :id, :nombre do |b|%>
+      <%= b.check_box %>
+      <%= b.label %>
+    <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -1,18 +1,20 @@
 <main class="detalle">
-  <p id="notice"><%= notice %></p>
-  <div class="links">
-    <%= link_to 'Edit', edit_ubicacion_path(@ubicacion) %> 
-    <%= link_to 'Back', ubicacions_path %>
-  </div>
-  <p>
-    <strong>Lugar:</strong>
+      <div class="breadcrumb-class">Está en: Ciencias Humanas ><span> Solicitudes > Detalle Solicitud </span></div>
+            <h1 style="text-align: center;"> SISTEMA DE SOLICITUDES </h1>
+            <p class="field" id="notice"><%= notice %></p>
+            <div class="links">
+            <%= link_to 'Editar', edit_ubicacion_path(@ubicacion) %> 
+            <%= link_to 'Regresar', ubicacions_path %>
+          </div>
+        <div class="register-content">
+          <p class="field" class="field">
+    <strong class="title">Lugar:</strong>
     <%= @ubicacion.lugar %>
   </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= @ubicacion.user %>
-  </p>
+<p class="field">
+  <b>Responsables</b>
+  <%= @ubicacion.users.map{|p| p.nombre}.to_sentence %>
+</p> 
 
 </main>
 

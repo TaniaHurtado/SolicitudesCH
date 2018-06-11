@@ -14,7 +14,9 @@ class UsersController < ApplicationController
 		end
 	end
 
-
+	def responsables
+		@responsables = User.where(:rol => 0)
+	end
 
 
 	def create

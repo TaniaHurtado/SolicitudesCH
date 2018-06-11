@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180528212156) do
+ActiveRecord::Schema.define(version: 20180608164751) do
 
   create_table "evaluacions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "calificacion"
@@ -50,10 +50,16 @@ ActiveRecord::Schema.define(version: 20180528212156) do
 
   create_table "ubicacions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "lugar"
-    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_ubicacions_on_user_id", using: :btree
+    t.string   "users"
+  end
+
+  create_table "ubicacions_users", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer "ubicacion_id"
+    t.integer "user_id"
+    t.index ["ubicacion_id"], name: "index_ubicacions_users_on_ubicacion_id", using: :btree
+    t.index ["user_id"], name: "index_ubicacions_users_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -87,5 +93,6 @@ ActiveRecord::Schema.define(version: 20180528212156) do
   add_foreign_key "evaluacions", "solicituds"
   add_foreign_key "solicituds", "ubicacions"
   add_foreign_key "solicituds", "users"
-  add_foreign_key "ubicacions", "users"
+  add_foreign_key "ubicacions_users", "ubicacions"
+  add_foreign_key "ubicacions_users", "users"
 end

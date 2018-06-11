@@ -6,7 +6,7 @@ class User < ApplicationRecord
          :confirmable
 
   has_many :solicituds, dependent: :destroy
-  has_many :ubicacions, dependent: :destroy
+  has_and_belongs_to_many :ubicacions
   #validates :nombre,  :presence => true
 
 	enum rol:{
