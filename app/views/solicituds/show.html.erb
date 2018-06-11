@@ -39,7 +39,7 @@
 
           <p class="field">
             <strong class="title">Lugar:</strong>
-            <%= @solicitud.lugar %>
+            <%= @solicitud.ubicacion.lugar %>
           </p>
 
           <p class="field">
@@ -49,7 +49,7 @@
           </p>
           <p class="field">
             <strong class="title">Responsable:</strong>
-            <%= @solicitud.nombre_responsable %>
+            <%= @solicitud.ubicacion.users.map{|p| p.nombre}.to_sentence %>
           </p>
           </div>
           

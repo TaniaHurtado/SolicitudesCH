@@ -77,7 +77,7 @@
 		              <td colspan="1"><%= solicitud.materiales %></td>
 		              <td colspan="1"><%= solicitud.fecha.strftime("%d/%m/%Y") %></td>
 		              <td colspan="1"><%= solicitud.lugar %></td>
-		              <td colspan="1"><%= solicitud.nombre_responsable %> <%= solicitud.nombre_responsable2 %></td>
+		              <td colspan="1"><%= solicitud.ubicacion.users.map{|p| p.nombre}.to_sentence %></td>
 		              <td colspan="3" style="padding-bottom: 15px;">
 		                 <% if solicitud.estado == "Evaluada" %>
 			              <div class="actions boton"><%= link_to 'Ver Evaluación',solicitud_evaluacions_path(solicitud) %>	</div>

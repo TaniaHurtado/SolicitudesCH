@@ -14,6 +14,7 @@ class UbicacionsController < ApplicationController
     @users = User.where(:rol =>0)
   end
 
+
   # GET /ubicacions/new
   def new
     @ubicacion = Ubicacion.new
@@ -28,18 +29,13 @@ class UbicacionsController < ApplicationController
   # POST /ubicacions
   # POST /ubicacions.json
   def create
-    @users = User.where(:rol =>0)
-    print "******************"
-    #print @users.find(2).nombre
+    @users = User.where(:rol =>0)   
     @ubicacion = Ubicacion.new(ubicacion_params)
-    #@ubicacion.users= params[:ubicacion][:users]
-    #@ubicacion.save
-    #print @ubicacion.users.find(2).nombre
-    #@ubicacion.users = params[:ubicacion][:users]
-    
+    print "********************"
+    print @ubicacion.user_ids
     respond_to do |format|
       if @ubicacion.save
-        format.html { redirect_to @ubicacion, notice: 'Ubicacion was successfully created.' }
+        format.html { redirect_to @ubicacion, notice: 'Ubicación creada' }
         format.json { render :show, status: :created, location: @ubicacion }
       else
         format.html { render :new }
@@ -51,15 +47,11 @@ class UbicacionsController < ApplicationController
   # PATCH/PUT /ubicacions/1
   # PATCH/PUT /ubicacions/1.json
   def update
-    @users = User.all
-    if params[:ubicacion][:user_ids]
-      params[:ubicacion][:user_ids] = params[:ubicacion][:user_ids].map{|k, v| k}
-    else
-      params[:ubicacion][:user_ids] = []
-    end
+    @users = User.where(:rol =>0)  
+    
     respond_to do |format|
       if @ubicacion.update(ubicacion_params)
-        format.html { redirect_to @ubicacion, notice: 'Ubicacion was successfully updated.' }
+        format.html { redirect_to @ubicacion, notice: 'Ubicación actualizada' }
         format.json { render :show, status: :ok, location: @ubicacion }
       else
         format.html { render :edit }
@@ -73,7 +65,7 @@ class UbicacionsController < ApplicationController
   def destroy
     @ubicacion.destroy
     respond_to do |format|
-      format.html { redirect_to ubicacions_url, notice: 'Ubicacion was successfully destroyed.' }
+      format.html { redirect_to ubicacions_url, notice: 'Ubicación eliminada' }
       format.json { head :no_content }
     end
   end

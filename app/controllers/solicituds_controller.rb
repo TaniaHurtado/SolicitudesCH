@@ -9,6 +9,7 @@ class SolicitudsController < ApplicationController
   #Evaluada
   # GET /solicituds
 
+
   # GET /solicituds.json  
   def index 
     @solicituds = Solicitud.where(user_id: current_user.id)
@@ -131,23 +132,17 @@ class SolicitudsController < ApplicationController
      
     #edificios= new Array(2)
     #.pluck(:id) devuelve un arreglo con los ids
-    @lugares = Ubicacion.where(lugar: params[:solicitud][:lugar]).pluck(:id)
-   
-    @lugar1 = Ubicacion.find(@lugares[0])
-    @responsable1 = User.find(@lugar1.user_id)
-    #@solicitud = Solicitud.new(descripcion: params[:solicitud][:descripcion], tipo: params[:solicitud][:tipo], importancia: params[:solicitud][:importancia], estado: 'Generada', materiales: params[:solicitud][:materiales], fecha: params[:solicitud][:fecha], correo_responsable: "mauricio", nombre_responsable: "Mauricio", lugar: params[:solicitud][:lugar], user_id: current_user.id)
+    @edificio = Ubicacion.where(lugar: params[:solicitud][:lugar]).pluck(:id)  
     @solicitud = Solicitud.new(solicitud_params)
     @solicitud.estado="Generada"
-    @solicitud.ubicacion_id = @lugares[0]
-    @solicitud.nombre_responsable=@responsable1.nombre
-    @solicitud.correo_responsable=@responsable1.email
-    if @lugares.length == 2
+    @solicitud.ubicacion_id = @edificio[0]
+    #Ubicacion.where(lugar: params[:solicitud][:lugar])
+    #@edificio[0]
+    print "++++++++++++responsables++++++++++++++"
+    print Ubicacion.find(@edificio[0]).lugar
+    print Ubicacion.find(@edificio[0]).user_ids
 
-      @lugar2 = Ubicacion.find(@lugares[1])
-      @responsable2 = User.find(@lugar2.user_id)
-      @solicitud.nombre_responsable2=@responsable2.nombre
-      @solicitud.correo_responsable2=@responsable2.email
-    end
+    
 
     respond_to do |format|
       if @solicitud.save
