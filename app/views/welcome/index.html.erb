@@ -6,25 +6,33 @@
 			<p class="navbar-text pull-right">
 			<div class="links">
 				<% if user_signed_in? %>
-				<p style="text-align: center; font-size: 20px;"><strong>Bienvenido: </strong><%= current_user.email %></p><br>
-				<%= link_to 'Editar perfil', edit_user_registration_path, :class => 'navbar-link' %> 
+					<p style="text-align: center; font-size: 20px;"><strong>Bienvenido: </strong><%= current_user.email %></p><br>
+					<%= link_to 'Editar perfil', edit_user_registration_path, :class => 'navbar-link' %> 
 				
-				<% if policy(current_user).responsable? %>
-				<%= link_to " Mis Solicitudes", responsable_solicituds_path, :class => 'navbar-link' %> 			
+					<% if policy(current_user).responsable? %>
+						<%= link_to " Mis Solicitudes", responsable_solicituds_path, :class => 'navbar-link' %> 			
 					<% elsif policy(current_user).admin? %>
 				<%= link_to "Gestionar Ubicaciones", ubicacions_path, :class => 'navbar-link' %> 
 				<%= link_to " Ver Solicitudes", admin_solicituds_path, :class => 'navbar-link' %> 
 				<%= link_to "Informes", informes_path, :class => 'navbar-link' %> 
 				<%= link_to "Usuarios", users_path, :class => 'navbar-link' %> 
 
-				<% else %>
-					<%= link_to " Mis Solicitudes", solicituds_path, :class => 'navbar-link' %> 
+					<% else %>
+						<%= link_to " Mis Solicitudes", solicituds_path, :class => 'navbar-link' %> 
 				<% end %>
 				
 				<%= link_to "Salir", logout_path , method: :get, :class => 'navbar-link' %> 
 				<% else %>
-				<%= link_to "Registrarse", new_user_registration_path, :class => 'navbar-link'  %> 
-				<%= link_to "Iniciar Sesión", new_user_session_path, :class => 'navbar-link'  %>
+					<div class="image-content">
+						<div class="home-image">
+							<div class="main-content">
+								<div class="centerItem">
+									<%= link_to "Registrarse", new_user_registration_path, :class => 'navbar-link'  %> 
+									<%= link_to "Iniciar Sesión", new_user_session_path, :class => 'navbar-link'  %>
+								</div>
+							</div>
+						</div>
+					</div>
 				<% end %>
 			</div>
 			</p>
