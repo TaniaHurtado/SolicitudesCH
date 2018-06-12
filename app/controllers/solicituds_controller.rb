@@ -70,9 +70,20 @@ class SolicitudsController < ApplicationController
 
   
   def responsable_solicituds   
-   #if current_user.rol == 0
-      @solicituds=Solicitud.where(correo_responsable: current_user.email)
-   #end
+    
+    @solicituds=Solicitud.all
+    
+    @solicituds.each do |sol|
+      print"dentro"
+      sol.ubicacion.users.pluck(:id).each do |u_id|
+        res=User.find(u_id)
+        if res.email == current_user.email
+          print sol.ubicacion.users.pluck(:id)#.map{|p| p.nombre}.to_sentence  
+        end
+      end
+    end   
+
+    # Ubicacion.find(@edificio[0]).user_ids
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @solicituds }
