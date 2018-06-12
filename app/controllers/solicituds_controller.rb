@@ -127,6 +127,7 @@ class SolicitudsController < ApplicationController
   # GET /solicituds/1
   # GET /solicituds/1.json
   def show
+    NotificationSolicitudMailer.send_solicitud(@solicitud).deliver
   end
   # GET /solicituds/new
   def new
@@ -153,12 +154,13 @@ class SolicitudsController < ApplicationController
     print Ubicacion.find(@edificio[0]).lugar
     print Ubicacion.find(@edificio[0]).user_ids
 
-    
+
 
     respond_to do |format|
       if @solicitud.save
         format.html { redirect_to @solicitud, notice: 'La solicitud fue creada de manera exitosa' }
         format.json { render :show, status: :created, location: @solicitud }
+         
       else
         format.html { render :new } 
         format.json { render json: @solicitud.errors, status: :unprocessable_entity }
