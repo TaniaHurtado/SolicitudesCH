@@ -42,7 +42,8 @@
      
       <div class="field">
       <%= f.label :Rol %><br />
-      <%= f.number_field :rol, as: :integer,  autofocus: true %>
+      <!--<%= f.number_field :rol, as: :integer,  autofocus: true %>-->
+      <%= f.select :rol, [["Responsable", "0"], ["Solicitante", "1"]], {}, {} %>
     </div>
        
 
