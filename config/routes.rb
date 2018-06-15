@@ -20,6 +20,7 @@ scope 'Responsable' do
   get "responsable_solicituds" => "solicituds#responsable_solicituds"
   match '/solicituds/:id/aceptar_solicitud', to: 'solicituds#aceptar_solicitud',via: [:put, :get], as: 'aceptar_solicitud'
   match '/solicituds/:id/realizar_solicitud', to: 'solicituds#realizar_solicitud',via: [:put, :get], as: 'realizar_solicitud'
+  #get 'logout' => 'devise/sessions#destroy'
   #put 'aceptar_solicitud' => 'solicituds#aceptar_solicitud'
 end
  
@@ -28,20 +29,21 @@ end
     resources :ubicacions
     resources :users, :controller => "users"
     get "admin_solicituds" => "solicituds#admin_solicituds"
+    #get 'logout' => 'devise/sessions#destroy'
     #get "order_date_solicituds" => "solicituds#order_date_solicituds"
     #get "order_state_solicituds" => "solicituds#order_state_solicituds"
   end
 
   devise_scope :user do
-    get "sign_in" => "devise/sessions#new"
-    get "sign_up" => "devise/registrations#new"
-    
+    #get "sign_in" => "devise/sessions#new"
+    #get "sign_up" => "devise/registrations#new"
+    get 'logout' => 'devise/sessions#destroy'
   end
 #match '/users/account_update_params', to: 'registrations#account_update_params',via: [:put, :get], as: 'update_params' 
 
 
   devise_for :users, controllers: { confirmations: 'confirmations',registrations:'registrations'} 
-  get 'logout' => 'devise/sessions#destroy'
+  
 
   #devise_for :users
   #match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], as: :finish_signup 
