@@ -75,7 +75,7 @@
 		              <td colspan="1"><%= solicitud.importancia %></td>
 		              <td colspan="1"><%= solicitud.estado %></td>
 		              <td colspan="1"><%= solicitud.materiales %></td>
-		              <td colspan="1"><%= solicitud.fecha.strftime("%d/%m/%Y") %></td>
+		              <td colspan="1"><%= solicitud.created_at.strftime("%d/%m/%Y") %></td>
 		              <td colspan="1"><%= solicitud.lugar %></td>
 		              <td colspan="1"><%= solicitud.ubicacion.users.map{|p| p.nombre}.to_sentence %></td>
 		              <td colspan="3" style="padding-bottom: 15px;">

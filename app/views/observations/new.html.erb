@@ -1,5 +1,14 @@
-<h1>New Observation</h1>
+<main class="detalle">
+	<div class="breadcrumb-class">Está en: Ciencias Humanas ><span>Solicitudes> Observaciones</span></div>
+				<h1 style="text-align: center;"> SISTEMA DE SOLICITUDES </h1>
+	<h2 style="text-align: center;"> FACULTAD CIENCIAS HUMANAS </h2>
+		<div class="links">
+		<%= link_to 'Regresar', responsable_solicituds_path %>
+	</div>
+	
+	<div class="register-content">
+		<h1 class="register-label">Agregar Observación</h1>
+		<%= render 'form', observation: @observation %>
 
-<%= render 'form', observation: @observation %>
-
-<%= link_to 'Back', observations_path %>
+	</div>
+</main>

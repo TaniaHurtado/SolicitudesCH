@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   
-  resources :observations
+  
   resources :informes
   root 'welcome#index'
   
   resources :solicituds do  	 
-    resources :evaluacions       
+    resources :evaluacions      
   end
 
 
@@ -21,6 +21,9 @@ scope 'Responsable' do
   get "responsable_solicituds" => "solicituds#responsable_solicituds"
   match '/solicituds/:id/aceptar_solicitud', to: 'solicituds#aceptar_solicitud',via: [:put, :get], as: 'aceptar_solicitud'
   match '/solicituds/:id/realizar_solicitud', to: 'solicituds#realizar_solicitud',via: [:put, :get], as: 'realizar_solicitud'
+  resources :solicituds do  
+    resources :observations     
+  end
   #get 'logout' => 'devise/sessions#destroy'
   #put 'aceptar_solicitud' => 'solicituds#aceptar_solicitud'
 end

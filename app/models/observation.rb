@@ -1,3 +1,3 @@
 class Observation < ApplicationRecord
-  belongs_to :Solicitud
+  belongs_to :solicitud
 end

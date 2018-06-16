@@ -11,6 +11,7 @@ class EvaluacionsController < ApplicationController
     
   end
 
+
   def solicitud_evaluada
     #@evaluacion = Evaluacion.find(params[:id])
     #@solicitud = Solicitud.find_by_id(@evaluacion.solicitud_id)    
@@ -31,6 +32,8 @@ class EvaluacionsController < ApplicationController
   # GET /evaluacions/new
   def new
     @solicitud = Solicitud.find(params[:solicitud_id])
+      print"*****************solicitud en obs new"
+    print @solicitud.descripcion
     @evaluacion = Evaluacion.new
   end
 
@@ -43,6 +46,8 @@ class EvaluacionsController < ApplicationController
   # POST /evaluacions.json
   def create
     @solicitud = Solicitud.find(params[:solicitud_id])
+    print"*****************solicitud en obs"
+    print @solicitud.descripcion
     @evaluacion = Evaluacion.new(evaluacion_params)
 
     #respond_to do |format|

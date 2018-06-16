@@ -40,7 +40,14 @@
 		              <td colspan="1"><%= solicitud.importancia %></td>
 		              <td colspan="1"><%= solicitud.estado %></td>
 		              <td colspan="1"><%= solicitud.materiales %></td>
-		              <td colspan="1"><%= solicitud.fecha %></td>
+		              <td colspan="1">
+		              	 <%if solicitud.estado=="Aceptada"%>
+		                	<%= solicitud.fecha_aceptada.strftime("%m/%d/%Y") %>
+		                <%end%>
+		                 <%if solicitud.estado=="Realizada"%>
+		                	<%= solicitud.fecha_realizada.strftime("%m/%d/%Y") %>
+		                <%end%>
+		              <%= solicitud.fecha_creada %></td>
 		              <td colspan="1"><%= solicitud.lugar %></td>
 		              <td colspan="1"><%= solicitud.ubicacion.users.map{|p| p.nombre}.to_sentence %></td>
 		              <td colspan="3" style="padding-bottom: 15px;">
@@ -51,9 +58,14 @@
 					            
 					    <% elsif solicitud.estado == "Evaluada" %>
 			              <div class="actions boton"><%= link_to 'Ver Evaluación',solicitud_evaluacions_path(solicitud) %>	</div>
+			            <% end %>
+
+			             <%if solicitud.estado=="Aceptada"%>
+		                	<div class="actions boton"><%= link_to 'Observación',new_solicitud_observation_path(solicitud) %>	</div>
+		                <%end%>
 			            </td>                       
 					    </tr>
-		            <% end %>
+		            
 		          <% end %>
 		          <% end %>
 		        </tbody>

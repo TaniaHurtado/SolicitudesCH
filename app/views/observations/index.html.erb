@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Observations</h1>
+<h1>Observaciones</h1>
 
 <table>
   <thead>
@@ -17,10 +17,9 @@
       <tr>
         <td><%= observation.motivo %></td>
         <td><%= observation.descripcion %></td>
-        <td><%= observation.Solicitud %></td>
-        <td><%= link_to 'Show', observation %></td>
-        <td><%= link_to 'Edit', edit_observation_path(observation) %></td>
-        <td><%= link_to 'Destroy', observation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', solicitud_observation_path(@solicitud,observation) %></td>
+        <td><%= link_to 'Edit', edit_solicitud_observation_path(@solicitud,observation) %></td>
+        <td><%= link_to 'Destroy', solicitud_observation_path(@solicitud,observation), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +27,3 @@
 
 <br>
 
-<%= link_to 'New Observation', new_observation_path %>

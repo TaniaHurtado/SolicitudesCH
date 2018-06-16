@@ -41,6 +41,7 @@ class SolicitudsController < ApplicationController
   def send_solicitud_mail
     @solicitud=Solicitud.find(params[:id])
     @solicitud.estado="Asignada"
+    @solicitud.fecha_notificada=Date.today
     @solicitud.save
     #@lugar = Ubicacion.find_by(lugar: params[:solicitud][:lugar])
     #@responsable = User.find(@lugar.user_id)
@@ -97,6 +98,9 @@ class SolicitudsController < ApplicationController
   def aceptar_solicitud
     @solicitud=Solicitud.find(params[:id])
     @solicitud.estado="Aceptada"
+    @solicitud.fecha_aceptada=Time.now
+print "*****************************"
+    print @solicitud.fecha_aceptada
     @solicitud.save
     #@lugar = Ubicacion.find_by(lugar: params[:solicitud][:lugar])
     #@responsable = User.find(@lugar.user_id)
@@ -107,6 +111,7 @@ class SolicitudsController < ApplicationController
   def realizar_solicitud
     @solicitud=Solicitud.find(params[:id])
     @solicitud.estado="Realizada"
+    @solicitud.fecha_realizada=Time.now
     @solicitud.save
     #@lugar = Ubicacion.find_by(lugar: params[:solicitud][:lugar])
     #@responsable = User.find(@lugar.user_id)
@@ -155,6 +160,7 @@ class SolicitudsController < ApplicationController
     @edificio = Ubicacion.where(lugar: params[:solicitud][:lugar]).pluck(:id)  
     @solicitud = Solicitud.new(solicitud_params)
     @solicitud.estado="Generada"
+    @solicitud.fecha_creada=Time.now
     @solicitud.ubicacion_id = @edificio[0]
     #Ubicacion.where(lugar: params[:solicitud][:lugar])
     #@edificio[0]
