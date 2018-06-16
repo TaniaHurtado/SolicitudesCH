@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180608164751) do
+ActiveRecord::Schema.define(version: 20180615034527) do
 
   create_table "evaluacions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "calificacion"
@@ -28,22 +28,30 @@ ActiveRecord::Schema.define(version: 20180608164751) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "observations", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "motivo"
+    t.string   "descripcion"
+    t.integer  "solicitud_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["solicitud_id"], name: "index_observations_on_solicitud_id", using: :btree
+  end
+
   create_table "solicituds", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "descripcion"
     t.string   "tipo"
     t.string   "importancia"
     t.string   "estado"
     t.string   "materiales"
-    t.datetime "fecha"
     t.string   "lugar"
     t.integer  "user_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-    t.string   "nombre_responsable"
-    t.string   "correo_responsable"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
     t.integer  "ubicacion_id"
-    t.string   "nombre_responsable2"
-    t.string   "correo_responsable2"
+    t.datetime "fecha_creada"
+    t.datetime "fecha_notificada"
+    t.datetime "fecha_aceptada"
+    t.datetime "fecha_realizada"
     t.index ["ubicacion_id"], name: "index_solicituds_on_ubicacion_id", using: :btree
     t.index ["user_id"], name: "index_solicituds_on_user_id", using: :btree
   end
@@ -91,6 +99,7 @@ ActiveRecord::Schema.define(version: 20180608164751) do
   end
 
   add_foreign_key "evaluacions", "solicituds"
+  add_foreign_key "observations", "solicituds"
   add_foreign_key "solicituds", "ubicacions"
   add_foreign_key "solicituds", "users"
   add_foreign_key "ubicacions_users", "ubicacions"

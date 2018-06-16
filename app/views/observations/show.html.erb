@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Motivo:</strong>
+  <%= @observation.motivo %>
+</p>
+
+<p>
+  <strong>Descripcion:</strong>
+  <%= @observation.descripcion %>
+</p>
+
+<p>
+  <strong>Solicitud:</strong>
+  <%= @observation.Solicitud %>
+</p>
+
+<%= link_to 'Edit', edit_observation_path(@observation) %> |
+<%= link_to 'Back', observations_path %>

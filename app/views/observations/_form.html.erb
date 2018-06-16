@@ -1,0 +1,32 @@
+<%= form_for(observation) do |f| %>
+  <% if observation.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(observation.errors.count, "error") %> prohibited this observation from being saved:</h2>
+
+      <ul>
+      <% observation.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :motivo %>
+    <%= f.text_field :motivo %>
+  </div>
+
+  <div class="field">
+    <%= f.label :descripcion %>
+    <%= f.text_field :descripcion %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Solicitud_id %>
+    <%= f.text_field :Solicitud_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

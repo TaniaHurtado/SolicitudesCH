@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  motivo: MyString
+  descripcion: MyString
+  Solicitud: one
+
+two:
+  motivo: MyString
+  descripcion: MyString
+  Solicitud: two
