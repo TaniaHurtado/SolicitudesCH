@@ -98,7 +98,7 @@ class SolicitudsController < ApplicationController
   def aceptar_solicitud
     @solicitud=Solicitud.find(params[:id])
     @solicitud.estado="Aceptada"
-    @solicitud.fecha_aceptada=Time.now
+    @solicitud.fecha_aceptada=Date.today
 print "*****************************"
     print @solicitud.fecha_aceptada
     @solicitud.save
@@ -111,7 +111,7 @@ print "*****************************"
   def realizar_solicitud
     @solicitud=Solicitud.find(params[:id])
     @solicitud.estado="Realizada"
-    @solicitud.fecha_realizada=Time.now
+    @solicitud.fecha_realizada=Date.today
     @solicitud.save
     #@lugar = Ubicacion.find_by(lugar: params[:solicitud][:lugar])
     #@responsable = User.find(@lugar.user_id)
@@ -157,16 +157,19 @@ print "*****************************"
      
     #edificios= new Array(2)
     #.pluck(:id) devuelve un arreglo con los ids
-    @edificio = Ubicacion.where(lugar: params[:solicitud][:lugar]).pluck(:id)  
+    print "**************lugar********"
+    #print params[:solicitud][:lugar]
+    print params[:solicitud][:ubicacion_id]
+    #@edificio = Ubicacion.where(lugar: params[:solicitud][:lugar]).pluck(:id)  
     @solicitud = Solicitud.new(solicitud_params)
     @solicitud.estado="Generada"
-    @solicitud.fecha_creada=Time.now
-    @solicitud.ubicacion_id = @edificio[0]
+    @solicitud.fecha_creada=Date.today
+    #@solicitud.ubicacion_id = @edificio[0]
     #Ubicacion.where(lugar: params[:solicitud][:lugar])
     #@edificio[0]
     print "++++++++++++responsables++++++++++++++"
-    print Ubicacion.find(@edificio[0]).lugar
-    print Ubicacion.find(@edificio[0]).user_ids
+    #print Ubicacion.find(@edificio[0]).lugar
+    #print Ubicacion.find(@edificio[0]).user_ids
 
 
 
@@ -217,7 +220,7 @@ print "*****************************"
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def solicitud_params
-      params.require(:solicitud).permit(:descripcion, :tipo, :importancia, :estado, :materiales, :fecha, :correo_responsable, :nombre_responsable, :lugar, :user_id, :ubicacion_id)
+      params.require(:solicitud).permit(:descripcion, :tipo, :importancia, :estado, :materiales, :fecha, :lugar, :user_id, :ubicacion_id)
     end
 
     def filter_by_state

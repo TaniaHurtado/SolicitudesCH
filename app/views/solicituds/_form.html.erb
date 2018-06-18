@@ -36,7 +36,7 @@
 
   <div class="field">
     <%= f.label :lugar %>
-    <%= f.select :lugar, ['Sociología','CES','Rogelio Salmona', 'Aulas','Lenguas Extranjeras','Filosofía', 'Manuel Ancizar','Programa segunda lengua','Evocol', 'Las nieves', 'Casa Gaitán', 'Antonio Nariño ','Camilo Torres-Bloque 1']%>
+   <%= f.select :ubicacion_id, options_from_collection_for_select(Ubicacion.all, 'id','lugar')%>
   </div>
 
   <%= f.hidden_field :user_id, :value => current_user.id %>
