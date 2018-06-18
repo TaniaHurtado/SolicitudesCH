@@ -17,6 +17,7 @@ class Solicitud < ApplicationRecord
     solicitud = solicitud.where(importancia: importancia) if importancia && importancia != ""
     solicitud = solicitud.where(user: solicitante) if solicitante && solicitante != ""
     solicitud = solicitud.joins(:ubicacion).where("ubicacions.lugar = ?", lugar) if lugar && lugar != ""
+    solicitud = solicitud.joins("INNER JOIN ubicacions_users ON solicituds.ubicacion_id AND ubicacions_users.user_id = " + responsable).group("solicituds.id")  if responsable && responsable != ""
     return solicitud
   end
 end

@@ -78,7 +78,7 @@
 		              <td colspan="1"><%= solicitud.materiales %></td>
 		              <td colspan="1"><%= solicitud.created_at.strftime("%d/%m/%Y") %></td>
 		              <td colspan="1"><%= solicitud.ubicacion.lugar %></td>
-		              <td colspan="1"><%= solicitud.ubicacion.users.map{|p| p.nombre}.to_sentence %></td>
+		              <td colspan="1"><%= solicitud.ubicacion.users.map{|p| p.nombre + " " + p.apellido}.to_sentence %></td>
 		              <td colspan="3" style="padding-bottom: 15px;">
 		                 <% if solicitud.estado == "Evaluada" %>
 			              <div class="actions boton"><%= link_to 'Ver Evaluación',solicitud_evaluacions_path(solicitud) %>	</div>
