@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
-
+  validates_format_of :email, with: /\@unal\.edu\.co/, message: 'Debes ingresar un correo @unal.edu.co'      
   has_many :solicituds, dependent: :destroy
   has_and_belongs_to_many :ubicacions
   #validates :nombre,  :presence => true
