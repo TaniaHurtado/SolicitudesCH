@@ -31,11 +31,11 @@
 							</div>
 							<div class="field inline">
 								<%= label_tag 'Responsable', nil, class:"label_tag"	 %>
-						<%= select_tag :responsable, options_for_select(@solicituds.uniq.pluck(:nombre_responsable, :nombre_responsable2), params[:responsable]), {:include_blank => 'Todos'} %>
+						<%= select_tag :responsable, options_for_select(User.uniq.where('rol = 0').collect { |u| [ u.nombre + " " + u.apellido, u.id ]}, params[:responsable]), {:include_blank => 'Todos'} %>
 						</div>
 						<div class="field inline">
 							<%= label_tag 'Lugar', nil, class:"label_tag" %>
-						<%= select_tag :lugar, options_for_select(@solicituds.uniq.pluck(:lugar), params[:lugar]),  {:include_blank => 'Todos'} %>
+						<%= select_tag :lugar, options_for_select(Ubicacion.where(id: @solicituds.uniq.pluck(:ubicacion_id)).collect{ |ub| [ub.lugar] }, params[:lugar]),  {:include_blank => 'Todos'} %>
 						</div>
 						<div class="actions">
 							<%= submit_tag 'Filtrar', class:"custom-btn-ubication" %>
@@ -54,7 +54,8 @@
 		            <th colspan="1">Materiales</th>
 		            <th colspan="1">Fecha</th>
 		            <th colspan="1">Lugar</th>
-		            <th colspan="1">Responsable</th> <th colspan="1">Evaluación</th>
+		            <th colspan="1">Responsable</th> 
+								<th colspan="1">Evaluación</th>
 		          </tr>
 		        </thead>
 
@@ -76,7 +77,7 @@
 		              <td colspan="1"><%= solicitud.estado %></td>
 		              <td colspan="1"><%= solicitud.materiales %></td>
 		              <td colspan="1"><%= solicitud.created_at.strftime("%d/%m/%Y") %></td>
-		              <td colspan="1"><%= solicitud.lugar %></td>
+		              <td colspan="1"><%= solicitud.ubicacion.lugar %></td>
 		              <td colspan="1"><%= solicitud.ubicacion.users.map{|p| p.nombre}.to_sentence %></td>
 		              <td colspan="3" style="padding-bottom: 15px;">
 		                 <% if solicitud.estado == "Evaluada" %>
