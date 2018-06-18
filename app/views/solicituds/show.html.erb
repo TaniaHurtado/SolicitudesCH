@@ -34,7 +34,7 @@
 
           <p class="field">
             <strong class="title">Fecha:</strong>
-            <%= @solicitud.created_at %>
+            <%= @solicitud.created_at.strftime("%d/%m/%Y")  %>
           </p>
 
           <p class="field">

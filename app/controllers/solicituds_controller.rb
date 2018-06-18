@@ -137,10 +137,10 @@ print "*****************************"
   # GET /solicituds/new
   def new
     @solicituds_count=Solicitud.where("user_id = ? AND estado != ?", current_user.id, "Evaluada").count;
-    if @solicituds_count < 6
+    if @solicituds_count < 11
     @solicitud = Solicitud.new
     else
-      flash[:alert] = 'No puedes crear solicitudes si aún tienes más de 5 evaluaciones o solicitudes pendientes'
+      flash[:alert] = 'No puedes crear solicitudes si aún tienes más de 10 evaluaciones o solicitudes pendientes'
       redirect_to solicituds_path
       
     end
