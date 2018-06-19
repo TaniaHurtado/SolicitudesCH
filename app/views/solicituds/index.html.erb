@@ -46,10 +46,10 @@
                 <td colspan="1"><%= solicitud.materiales %></td>
                 <td colspan="1"><%= solicitud.fecha_creada %>
                 <%if solicitud.estado=="Aceptada"%>
-                <%= solicitud.fecha_aceptada.strftime("%m/%d/%Y") %>
+                <%= solicitud.fecha_aceptada %>
                 <%end%>
                  <%if solicitud.estado=="Realizada"%>
-                <%= solicitud.fecha_realizada.strftime("%m/%d/%Y") %>
+                <%= solicitud.fecha_realizada %>
                 <%end%>
                 </td>
                 <td colspan="1"><%= solicitud.lugar %></td>

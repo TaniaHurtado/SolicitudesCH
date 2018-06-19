@@ -160,16 +160,9 @@ print "*****************************"
     print "**************lugar********"
     #print params[:solicitud][:lugar]
     print params[:solicitud][:ubicacion_id]
-    #@edificio = Ubicacion.where(lugar: params[:solicitud][:lugar]).pluck(:id)  
     @solicitud = Solicitud.new(solicitud_params)
     @solicitud.estado="Generada"
     @solicitud.fecha_creada=Date.today
-    #@solicitud.ubicacion_id = @edificio[0]
-    #Ubicacion.where(lugar: params[:solicitud][:lugar])
-    #@edificio[0]
-    print "++++++++++++responsables++++++++++++++"
-    #print Ubicacion.find(@edificio[0]).lugar
-    #print Ubicacion.find(@edificio[0]).user_ids
 
 
 
