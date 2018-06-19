@@ -8,7 +8,7 @@
       <h1 style="text-align: center">Mis Solicitudes</h1>
 				<div class="links">
 					<%= link_to "Exportar Datos - Excel", responsable_solicituds_path(format: "xlsx") %>
-					<%= link_to "Regresar", welcome_index_path  %>
+					<!-- <%= link_to "Regresar", :back %>-->
 					<%= link_to "Salir", logout_path , method: :delete, :class => 'navbar-link' %>
 				</div>
       <div style="overflow-x:auto;">
@@ -49,7 +49,7 @@
 		                <%end%>
 		              <%= solicitud.fecha_creada %></td>
 		              <td colspan="1"><%= solicitud.lugar %></td>
-		              <td colspan="1"><%= solicitud.ubicacion.users.map{|p| p.nombre}.to_sentence %></td>
+		              <td colspan="1"><%= solicitud.ubicacion.users.map{|p| p.nombre + p.apellido}.to_sentence %></td>
 		              <td colspan="3" style="padding-bottom: 15px;">
 		              <% if solicitud.estado == "Generada" %>
 		              	<div class="actions boton"><%= link_to 'Aceptar',aceptar_solicitud_path(solicitud), method: :put, data: {confirm: '¿Estas seguro?'} %></div>

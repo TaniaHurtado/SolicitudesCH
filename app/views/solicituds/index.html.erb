@@ -44,7 +44,7 @@
                 <td colspan="1"><%= solicitud.importancia %></td>
                 <td colspan="1"><%= solicitud.estado %></td>
                 <td colspan="1"><%= solicitud.materiales %></td>
-                <td colspan="1"><%= solicitud.fecha_creada %>
+                <td colspan="1"><%= solicitud.fecha_creada.strftime("%m/%d/%Y") %>
                 <%if solicitud.estado=="Aceptada"%>
                 <%= solicitud.fecha_aceptada %>
                 <%end%>
