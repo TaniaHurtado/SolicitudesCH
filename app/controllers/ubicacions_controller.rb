@@ -1,6 +1,6 @@
 class UbicacionsController < ApplicationController
   before_action :set_ubicacion, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /ubicacions
   # GET /ubicacions.json
   def index
@@ -33,13 +33,18 @@ class UbicacionsController < ApplicationController
     @ubicacion = Ubicacion.new(ubicacion_params)
     print "********************"
     print @ubicacion.user_ids
-    respond_to do |format|
-      if @ubicacion.save
-        format.html { redirect_to @ubicacion, notice: 'Ubicación creada' }
-        format.json { render :show, status: :created, location: @ubicacion }
-      else
-        format.html { render :new }
-        format.json { render json: @ubicacion.errors, status: :unprocessable_entity }
+    if @ubicacion.user_ids.length == 0 || !@ubicacion.lugar
+      flash[:alert] = 'No puedes crear una ubicación sin responsables o sin un lugar'
+      redirect_to new_ubicacion_path
+    else
+      respond_to do |format|
+        if @ubicacion.save
+          format.html { redirect_to @ubicacion, notice: 'Ubicación creada' }
+          format.json { render :show, status: :created, location: @ubicacion }
+        else
+          format.html { render :new }
+          format.json { render json: @ubicacion.errors, status: :unprocessable_entity }
+        end
       end
     end
   end

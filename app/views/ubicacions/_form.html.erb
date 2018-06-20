@@ -1,8 +1,7 @@
 <%= form_for(ubicacion) do |f| %>
   <% if ubicacion.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(ubicacion.errors.count, "error") %> prohibited this ubicacion from being saved:</h2>
-
+    <div id="error_explanation" class="custom-alert-notice">
+      <h2><%= pluralize(ubicacion.errors.count, "error") %> han evitado guardar la ubicación:</h2>
       <ul>
       <% ubicacion.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -25,6 +24,7 @@
       <%= b.label %>
     <% end %>
   <div class="actions">
-    <%= f.submit %>
+      <%= f.submit %>
+    
   </div>
 <% end %>

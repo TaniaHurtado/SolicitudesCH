@@ -49,7 +49,7 @@
           </p>
           <p class="field">
             <strong class="title">Responsable:</strong>
-            <%= @solicitud.ubicacion.users.map{|p| p.nombre}.to_sentence %>
+            <%= @solicitud.ubicacion.users.map{|p| p.nombre + " " + p.apellido}.to_sentence %>
           </p>
           </div>
           
