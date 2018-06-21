@@ -8,8 +8,8 @@
       <h1 style="text-align: center">Usuarios del Sistema</h1>
       <div class="links">
           <%= link_to "Exportar Datos - Excel", users_path(format: "xlsx") %>
-         <!--> <%= link_to "Regresar", welcome_index_path  %> -->
-          <%= link_to "Salir", destroy_user_session_path , method: :delete, :class => 'navbar-link' %>
+          <%= link_to "Regresar", welcome_index_path  %> 
+          <!--<%= link_to "Salir", destroy_user_session_path , method: :delete, :class => 'navbar-link' %> -->
       </div>
       <div class="div-table">
         <table style="width:100%" class="sol_table">
@@ -37,7 +37,6 @@
                 <td colspan="1"><%= user.rol %></td>
                 <td colspan="3" style="padding-bottom: 20px;">             
                 <div class="actions boton"><%= link_to 'Editar',edit_user_path(user) %></div>
-                
                 </td>
               </tr>
             <% end %>
