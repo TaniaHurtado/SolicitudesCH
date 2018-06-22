@@ -13,7 +13,9 @@
   			<%= @informe.nombre %> </p>
 			<p class="field">
 			  <strong class="title">Tabla:</strong> <br>
-			  <%= image_tag @informe.archivo.url, :width => 500, :height => 390  %>
+				<div class="image-wrapper">
+			  	<%= image_tag @informe.archivo.url, :width => "100%", :height => "100%"  %>
+				</div>
 			</p>
 </div>
           

@@ -224,3 +224,8 @@ tr:nth-child(even) {background-color: #bebebe;}
     margin: auto;
     width: fit-content;
 }
+
+.image-wrapper{
+    width: 90%;
+    margin: auto;
+}
