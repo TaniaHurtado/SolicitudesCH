@@ -250,3 +250,8 @@ tr:nth-child(even) {
     margin: auto;
     width: fit-content;
 }
+
+.image-wrapper{
+    width: 90%;
+    margin: auto;
+}
