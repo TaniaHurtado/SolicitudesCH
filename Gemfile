@@ -59,3 +59,5 @@ gem 'axlsx_rails'
 
 #Translation
 gem 'rails-i18n'
+
+gem 'whenever', :require => false

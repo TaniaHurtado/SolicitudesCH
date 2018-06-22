@@ -20,4 +20,13 @@ class Solicitud < ApplicationRecord
     solicitud = solicitud.joins(:ubicacion).where("ubicacions.lugar = ?", lugar) if lugar && lugar != ""  
     return solicitud
   end
+
+  def self.solicitudes_cron
+    
+
+    
+  end
+
+  
+
 end
