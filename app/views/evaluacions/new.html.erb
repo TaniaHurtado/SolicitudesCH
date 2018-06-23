@@ -11,7 +11,7 @@
             <div class="register-content">
                 <h1 class="field">Evaluar solicitud</h1>
                 <p class="field">Descripción:  <%= @solicitud.descripcion%></p>
-                <p class="field">Responsable:  <%= @solicitud.nombre_responsable%></p>
+                <p class="field">Responsable:  <%= @solicitud.ubicacion.users.map{|p| p.nombre}.to_sentence %></p>
                 <%= render 'form', evaluacion: @evaluacion %>
             </div>
 

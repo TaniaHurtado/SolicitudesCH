@@ -6,6 +6,7 @@
 			<p id="notice"><%= notice %></p>
 
       <h1 style="text-align: center">Solicitudes</h1>
+			<h3 style="text-align: center"><%= current_user.email%> : <%= current_user.rol%> </h3>
 						<div class="links">
 					<%= link_to "Exportar Datos - Excel", admin_solicituds_path(format: "xlsx") %>
 					<%= link_to "Salir", logout_path , method: :delete, :class => 'navbar-link' %>
@@ -82,7 +83,10 @@
 		              <td colspan="3" style="padding-bottom: 15px;">
 		                 <% if solicitud.estado == "Evaluada" %>
 			              <div class="actions boton"><%= link_to 'Ver Evaluación',solicitud_evaluacions_path(solicitud) %>	</div>
-			            </td>                       
+			            	<% elsif solicitud.estado == "Comentada" %>
+                  <div class="actions boton"><%= link_to 'Ver Observación', solicitud_observations_path(solicitud) %>	</div>                  
+                  
+									</td>                       
 					    </tr>
 		            <% end %>
 		          <% end %>

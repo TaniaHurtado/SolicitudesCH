@@ -1,8 +1,8 @@
 class Solicitud < ApplicationRecord
   belongs_to :user
   belongs_to :ubicacion
-  has_one :evaluacion
-  has_one :observation
+  has_one :evaluacion, dependent: :destroy
+  has_one :observation, dependent: :destroy
   #has_many :user
 
   def self.solicitudes_filtro(
@@ -20,13 +20,4 @@ class Solicitud < ApplicationRecord
     solicitud = solicitud.joins(:ubicacion).where("ubicacions.lugar = ?", lugar) if lugar && lugar != ""  
     return solicitud
   end
-
-  def self.solicitudes_cron
-    
-
-    
-  end
-
-  
-
 end

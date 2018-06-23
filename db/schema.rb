@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180615034527) do
+ActiveRecord::Schema.define(version: 20180623044317) do
 
   create_table "evaluacions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "calificacion"
@@ -45,13 +45,15 @@ ActiveRecord::Schema.define(version: 20180615034527) do
     t.string   "materiales"
     t.string   "lugar"
     t.integer  "user_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.integer  "ubicacion_id"
     t.datetime "fecha_creada"
     t.datetime "fecha_notificada"
     t.datetime "fecha_aceptada"
     t.datetime "fecha_realizada"
+    t.datetime "fecha_comentada"
+    t.datetime "fecha_no_realizada"
     t.index ["ubicacion_id"], name: "index_solicituds_on_ubicacion_id", using: :btree
     t.index ["user_id"], name: "index_solicituds_on_user_id", using: :btree
   end

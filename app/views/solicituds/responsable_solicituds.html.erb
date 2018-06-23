@@ -6,6 +6,8 @@
 			<p id="notice"><%= notice %></p>
 
       <h1 style="text-align: center">Mis Solicitudes</h1>
+			<h3 style="text-align: center"><%= current_user.email%> : <%= current_user.rol%> </h3>
+
 				<div class="links">
 					<%= link_to "Exportar Datos - Excel", responsable_solicituds_path(format: "xlsx") %>
 					<!-- <%= link_to "Regresar", :back %>-->
@@ -30,8 +32,8 @@
 		        <tbody>
 		          <% @solicituds.each do |solicitud| %>	          
 		          
-		          	<%= print current_user.nombre.in? solicitud.ubicacion.users.map{|p| p.nombre}.to_sentence %>
-		          <% if  current_user.nombre.in? solicitud.ubicacion.users.map{|p| p.nombre}.to_sentence  %>
+		          <%= print "****************vista res*****************+"%>	<%= print current_user.nombre.in? solicitud.ubicacion.users.map{|p| p.nombre}.to_sentence %>
+		          <% if  current_user.email.in? solicitud.ubicacion.users.map{|p| p.email}.to_sentence  %>
 		            <tr class="sol_table">
 		              <td colspan="1"> <% @user = User.find(solicitud.user)   %>
 		                    <%= @user.nombre %> <%= @user.apellido %> </td>
@@ -48,21 +50,24 @@
 		                	<%= solicitud.fecha_realizada.strftime("%m/%d/%Y") %>
 		                <%end%>
 		              <%= solicitud.fecha_creada %></td>
-		              <td colspan="1"><%= solicitud.lugar %></td>
+		              <td colspan="1"><%= solicitud.ubicacion.lugar %></td>
 		              <td colspan="1"><%= solicitud.ubicacion.users.map{|p| p.nombre + p.apellido}.to_sentence %></td>
 		              <td colspan="3" style="padding-bottom: 15px;">
 		              <% if solicitud.estado == "Generada" %>
 		              	<div class="actions boton"><%= link_to 'Aceptar',aceptar_solicitud_path(solicitud), method: :put, data: {confirm: '¿Estas seguro?'} %></div>
 		              <% elsif solicitud.estado == "Aceptada" %>
+										<div class="actions boton"><%= link_to "Agregar Observación", new_solicitud_observation_path(solicitud)%>	</div>
 			              <div class="actions boton"><%= link_to 'Finalizar',realizar_solicitud_path(solicitud), method: :put, data: {confirm: '¿Estas seguro?'} %></div>      
-					            
-					    <% elsif solicitud.estado == "Evaluada" %>
+					        <%elsif solicitud.estado=="Comentada"  %>
+										<div class="actions boton"><%= link_to 'Ver Observación', solicitud_observations_path(solicitud) %>	</div>
+										<div class="actions boton"><%= link_to 'Finalizar',realizar_solicitud_path(solicitud), method: :put, data: {confirm: '¿Estas seguro?'} %></div>
+		          
+					    		<% elsif solicitud.estado == "Evaluada" %>
 			              <div class="actions boton"><%= link_to 'Ver Evaluación',solicitud_evaluacions_path(solicitud) %>	</div>
-			            <% end %>
-
-			             <%if solicitud.estado=="Aceptada"%>
-		                	<div class="actions boton"><%= link_to 'Observación',new_solicitud_observation_path(solicitud) %>	</div>
+			            <%elsif  solicitud.estado == "Evaluada"  && solicitud.fecha_comentada != nil || solicitud.estado == "Realizada" && solicitud.fecha_comentada != nil  %>
+		                	<div class="actions boton"><%= link_to 'Ver Observación', solicitud_observations_path(solicitud) %>	</div>
 		                <%end%>
+
 			            </td>                       
 					    </tr>
 		            

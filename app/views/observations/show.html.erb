@@ -1,19 +1,28 @@
-<p id="notice"><%= notice %></p>
+<main class="detalle">
+			<div class="breadcrumb-class">Está en: Ciencias Humanas ><span> Solicitudes > Detalle Solicitud </span></div>
+						<h1 style="text-align: center;"> SISTEMA DE SOLICITUDES </h1>
+            <p class="field" id="notice"><%= notice %></p>
+            <div class="links">    
+            <%= link_to 'Regresar', solicitud_observations_path %>
+          </div>
+        <div class="register-content">          
 
-<p>
-  <strong>Motivo:</strong>
-  <%= @observation.motivo %>
-</p>
+          <p class="field">
+            <strong class="title">Motivo:</strong>
+            <%= @observation.motivo %>
+          </p>
 
-<p>
-  <strong>Descripcion:</strong>
-  <%= @observation.descripcion %>
-</p>
+          <p class="field">
+            <strong class="title">Descripcion:</strong>
+            <%= @observation.descripcion %>
+          </p>
 
-<p>
-  <strong>Solicitud:</strong>
-  <%= @observation.Solicitud %>
-</p>
+          <p class="field">
+            <strong class="title">Solicitud:</strong>
+            <%= @observation.solicitud.descripcion %>
+          </p>         
+        </div>          
+</main>
+          
 
-<%= link_to 'Edit', edit_observation_path(@observation) %> |
-<%= link_to 'Back', observations_path %>
+

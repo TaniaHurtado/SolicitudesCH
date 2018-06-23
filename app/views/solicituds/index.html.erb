@@ -6,6 +6,7 @@
 			<p id="notice"><%= notice %></p>
 
       <h1 style="text-align: center">Mis Solicitudes</h1>
+			<h3 style="text-align: center"><%= current_user.email%> : <%= current_user.rol%> </h3>
       <div class="links">
           <% if @solicituds.where("estado != 'Evaluada'").count < 11  %>  
             <%= link_to 'Crear Solicitud', new_solicitud_path %>
@@ -44,19 +45,25 @@
                 <td colspan="1"><%= solicitud.importancia %></td>
                 <td colspan="1"><%= solicitud.estado %></td>
                 <td colspan="1"><%= solicitud.materiales %></td>
-                <td colspan="1"><%= solicitud.fecha_creada.strftime("%m/%d/%Y") %>
+                <td colspan="1">Creada: <%= solicitud.fecha_creada.strftime("%m/%d/%Y") %>
+                <br>
                 <%if solicitud.estado=="Aceptada"%>
-                <%= solicitud.fecha_aceptada.strftime("%m/%d/%Y") %>
+                <br>
+                Aceptada: <%= solicitud.fecha_aceptada.strftime("%m/%d/%Y") %>
                 <%end%>
-                 <%if solicitud.estado=="Realizada"%>
-                <%= solicitud.fecha_realizada.strftime("%m/%d/%Y") %>
+                <br>
+                <%if solicitud.estado=="Realizada"%>
+
+                Realizada: <%= solicitud.fecha_realizada.strftime("%m/%d/%Y") %>
                 <%end%>
                 </td>
-                <td colspan="1"><%= solicitud.lugar %></td>
+                <td colspan="1"><%= solicitud.ubicacion.lugar %></td>
                 <td colspan="1"><%= solicitud.ubicacion.users.map{|p| p.nombre}.to_sentence %></td>
                 <td colspan="3" style="padding-bottom: 20px;">
-                  <% if solicitud.estado == "Realizada" %>             
+                  <% if solicitud.estado == "Realizada" %>                               
                     <div class="actions boton"><%= link_to 'Evaluar', new_solicitud_evaluacion_path(solicitud)%></div>
+                 <% elsif solicitud.estado == "Comentada" %>
+                  <div class="actions boton"><%= link_to 'Ver Observación', solicitud_observations_path(solicitud) %>	</div>                  
                   <% elsif solicitud.estado == "Evaluada" %>
                   <div class="actions boton">	<%= link_to 'Ver Calificación', solicitud_evaluacions_path(solicitud) %></div>
                   <% end %>

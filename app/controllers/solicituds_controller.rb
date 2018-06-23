@@ -43,9 +43,6 @@ class SolicitudsController < ApplicationController
     @solicitud.estado="Asignada"
     @solicitud.fecha_notificada=Date.today
     @solicitud.save
-    #@lugar = Ubicacion.find_by(lugar: params[:solicitud][:lugar])
-    #@responsable = User.find(@lugar.user_id)
-    #SendSolicitudMailer.send_solicitud(@solicitud).responsable
     redirect_to generated_solicitud_path
   end
 
@@ -60,15 +57,6 @@ class SolicitudsController < ApplicationController
       }
     end
   end
-
-  #def order_date_solicituds
-  #  @solictuds = Solicitud.order(:fecha)
-  #end
-
-  #def order_state_solicituds
-  #  @solictuds = Solicitud.order(:estado)
-  #end
-
   
   def responsable_solicituds   
     

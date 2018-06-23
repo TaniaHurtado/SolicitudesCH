@@ -1,5 +1,5 @@
 
-<%= form_for :evaluacion, url: solicitud_evaluacions_path do |f| %>
+<%= form_for ([@solicitud,@evaluacion]) do |f| %>
   
   <% if evaluacion.errors.any? %>
 

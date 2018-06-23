@@ -1,29 +1,47 @@
-<p id="notice"><%= notice %></p>
+<main class="detalle">
+			<div class="breadcrumb-class">Está en: Ciencias Humanas >
+        <span>  Solicitudes </span><span>  Observaciones </span>
+      </div>
+					
+			<h1 style="text-align: center;"> FACULTAD CIENCIAS HUMANAS </h1>
+      <h2 style="text-align: center;"> SISTEMA DE SOLICITUDES </h2>  
+			<p id="notice"><%= notice %></p>
+      <h3 style="text-align: center">Observaciones de mi Solicitud</h3>
+      <div class="links">    
+        <% if policy(current_user).responsable? %>
+          <%= link_to 'Regresar', responsable_solicituds_path, :class => 'navbar-link' %>
+          <% elsif policy(current_user).admin? %>
+          <%= link_to 'Regresar', admin_solicituds_path, :class => 'navbar-link' %>
+          <% else %>
+          <%= link_to 'Regresar', solicituds_path, :class => 'navbar-link' %>
+        <% end %>
+      </div>
+      
+      <div class="div-table">
+        <table style="width:100%" class="sol_table">
+          <thead>
+            <tr>
+              <th colspan="1">Motivo</th>
+              <th colspan="1">Descripcion</th>
+              <th colspan="1">Solicitud</th>
+              <th colspan="3">Acciones</th>
+            </tr>
+          </thead>
 
-<h1>Observaciones</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Motivo</th>
-      <th>Descripcion</th>
-      <th>Solicitud</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @observations.each do |observation| %>
-      <tr>
-        <td><%= observation.motivo %></td>
-        <td><%= observation.descripcion %></td>
-        <td><%= link_to 'Show', solicitud_observation_path(@solicitud,observation) %></td>
-        <td><%= link_to 'Edit', edit_solicitud_observation_path(@solicitud,observation) %></td>
-        <td><%= link_to 'Destroy', solicitud_observation_path(@solicitud,observation), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
+          <tbody>
+            <% @observations.each do |observation| %>
+              <tr>
+                <td colspan="1" ><%= observation.solicitud.descripcion %></td>
+                <td colspan="1" ><%= observation.motivo %></td>
+                <td colspan="1" ><%= observation.descripcion %></td>
+                <td colspan="3" style="padding-bottom: 20px;">                    
+                <div class="actions boton">
+                  <%= link_to 'Ver Observacion',solicitud_observation_path(observation.solicitud,observation) %>
+                </div>
+                </td>
+                </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+</main>

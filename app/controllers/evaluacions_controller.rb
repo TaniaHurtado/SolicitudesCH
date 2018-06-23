@@ -17,11 +17,8 @@ class EvaluacionsController < ApplicationController
     #@solicitud = Solicitud.find_by_id(@evaluacion.solicitud_id)    
     @solicitud = Solicitud.find(params[:id])   
     #@evaluacion = Evaluacion.Evaluacion.where(solicitud_id: @solicitud.id)
-
-
     @solicitud.estado="Evaluada"
     @solicitud.save
-
     redirect_to solicituds_path
   end
   # GET /evaluacions/1

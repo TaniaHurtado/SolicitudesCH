@@ -3,9 +3,9 @@ class UbicacionsController < ApplicationController
   
   # GET /ubicacions
   # GET /ubicacions.json
-  def index
+  def index    
     @ubicacions = Ubicacion.all
-    @users = User.where(:rol =>0)
+    @users = User.where(:rol => 0)
   end
 
   # GET /ubicacions/1
@@ -49,7 +49,7 @@ class UbicacionsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /ubicacions/1
+  # PATCH/PUT /ubicacions/1EXIT
   # PATCH/PUT /ubicacions/1.json
   def update
     @users = User.where(:rol =>0)  

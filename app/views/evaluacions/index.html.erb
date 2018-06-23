@@ -35,7 +35,7 @@
                     <td><%= evaluacion.calificacion %></td>
                     <td><%= evaluacion.obervacion %></td>
                     <td><%= evaluacion.solicitud.descripcion %></td>
-                    <td><%= evaluacion.solicitud.nombre_responsable %></td>
+                    <td><%= evaluacion.solicitud.ubicacion.users.map{|p| p.nombre}.to_sentence %></td>
                   </tr>
                   <% if evaluacion.solicitud.estado=="Realizada"%>
                   <td><%= link_to 'Nueva Evaluacion', new_solicitud_evaluacion_path %></td>

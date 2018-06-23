@@ -21,6 +21,7 @@ scope 'Responsable' do
   get "responsable_solicituds" => "solicituds#responsable_solicituds"
   match '/solicituds/:id/aceptar_solicitud', to: 'solicituds#aceptar_solicitud',via: [:put, :get], as: 'aceptar_solicitud'
   match '/solicituds/:id/realizar_solicitud', to: 'solicituds#realizar_solicitud',via: [:put, :get], as: 'realizar_solicitud'
+  match '/solicituds/:id/comentar_solicitud', to: 'observations#comentar_solicitud',via: [:put, :get], as: 'comentar_solicitud'
   resources :solicituds do  
     resources :observations     
   end

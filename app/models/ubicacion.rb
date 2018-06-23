@@ -1,5 +1,5 @@
 class Ubicacion < ApplicationRecord
-  has_and_belongs_to_many :users
+  has_and_belongs_to_many :users, dependent: :destroy
   #after_create :save_users
 
   def users=(value)

@@ -5,7 +5,7 @@ class ObservationsController < ApplicationController
   # GET /observations.json
   def index
     @solicitud = Solicitud.find(params[:solicitud_id])
-    @observations = Observation.all
+    @observations = Observation.where(solicitud_id: @solicitud.id)
   end
 
   # GET /observations/1
@@ -24,20 +24,25 @@ class ObservationsController < ApplicationController
     @solicitud = Solicitud.find(params[:solicitud_id])
   end
 
+  def comentar_solicitud
+    @solicitud = Solicitud.find(params[:id])   
+    @solicitud.estado="Comentada"
+    @solicitud.fecha_comentada=Date.today
+    @solicitud.save
+    redirect_to responsable_solicituds_path
+  end
   # POST /observations
   # POST /observations.json
   def create
     @solicitud = Solicitud.find(params[:solicitud_id])
     @observation = Observation.new(observation_params)
 
-    respond_to do |format|
-      if @observation.save
-        format.html { redirect_to solicitud_observations_path, notice: 'Observation was successfully created.' }
-        format.json { render :show, status: :created, location: solicitud_observations_path }
-      else
-        format.html { render :new }
-        format.json { render json: @observation.errors, status: :unprocessable_entity }
-      end
+      if @observation.save    
+        if @solicitud.estado == "Comentada"
+            redirect_to responsable_solicituds_path
+          else
+             redirect_to comentar_solicitud_path(@solicitud)
+          end
     end
   end
 
