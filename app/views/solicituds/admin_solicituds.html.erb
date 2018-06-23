@@ -77,7 +77,21 @@
 		              <td colspan="1"><%= solicitud.importancia %></td>
 		              <td colspan="1"><%= solicitud.estado %></td>
 		              <td colspan="1"><%= solicitud.materiales %></td>
-		              <td colspan="1"><%= solicitud.created_at.strftime("%d/%m/%Y") %></td>
+		              <td colspan="1">Creada: <%= solicitud.fecha_creada.strftime("%m/%d/%Y") %>
+									<br>
+									<%if solicitud.estado=="Aceptada"%>
+										<br>
+										Aceptada: <%= solicitud.fecha_aceptada.strftime("%m/%d/%Y") %>
+									<%end%>
+									<br>
+									<%if solicitud.estado=="Comentada"%>
+										Comentada: <%= solicitud.fecha_comentada.strftime("%m/%d/%Y") %>
+									<%end%>
+									<br>
+									<%if solicitud.estado=="Realizada"%>
+										Realizada: <%= solicitud.fecha_realizada.strftime("%m/%d/%Y") %>
+									<%end%>
+									</td>
 		              <td colspan="1"><%= solicitud.ubicacion.lugar %></td>
 		              <td colspan="1"><%= solicitud.ubicacion.users.map{|p| p.nombre + " " + p.apellido}.to_sentence %></td>
 		              <td colspan="3" style="padding-bottom: 15px;">

@@ -48,13 +48,16 @@
                 <td colspan="1">Creada: <%= solicitud.fecha_creada.strftime("%m/%d/%Y") %>
                 <br>
                 <%if solicitud.estado=="Aceptada"%>
+                  <br>
+                  Aceptada: <%= solicitud.fecha_aceptada.strftime("%m/%d/%Y") %>
+                <%end%>
                 <br>
-                Aceptada: <%= solicitud.fecha_aceptada.strftime("%m/%d/%Y") %>
+                <%if solicitud.estado=="Comentada"%>
+                  Comentada: <%= solicitud.fecha_comentada.strftime("%m/%d/%Y") %>
                 <%end%>
                 <br>
                 <%if solicitud.estado=="Realizada"%>
-
-                Realizada: <%= solicitud.fecha_realizada.strftime("%m/%d/%Y") %>
+                  Realizada: <%= solicitud.fecha_realizada.strftime("%m/%d/%Y") %>
                 <%end%>
                 </td>
                 <td colspan="1"><%= solicitud.ubicacion.lugar %></td>
