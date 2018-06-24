@@ -1,4 +1,9 @@
+col_widths= [20,20,20,20,20,20] 
+p = Axlsx::Package.new 
+p.use_autowidth = true
+wb = p.workbook
 wb = xlsx_package.workbook
+
 
 wb.styles do |style|
   highlight_cell = style.add_style(bg_color: "EFC376",
@@ -26,6 +31,7 @@ wb.add_worksheet(name: "Usuarios") do |sheet|
                       user.cargo,
                       user.rol
                       ]
+    sheet.column_widths *col_widths
     end
   end
 end
